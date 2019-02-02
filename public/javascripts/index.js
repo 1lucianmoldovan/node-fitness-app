@@ -28,8 +28,10 @@ function displayMembers(members) {
 document.querySelector("tbody").innerHTML = rows.join('')
 }
 
-function newMemberForm() {
-    
+function openNewMemberForm() {
+   document.getElementById("modal1").style.display = "flex";
 }
-
+function closeNewMemberForm(){
+    document.getElementById("modal1").style.display = "none";
+}
 loadMembers();
