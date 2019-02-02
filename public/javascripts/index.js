@@ -13,7 +13,7 @@ function displayMembers(members) {
         var b = member.usedSessions;
 
 
-        console.info('functioneaza', 'sedinte ramase =', a - b);
+        console.info('functioneaza', 'sedinte ramase sunt =', a - b);
 
         return `<tr>
         <td>${member.lastName}</td>
