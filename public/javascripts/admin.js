@@ -44,6 +44,5 @@ function memberSearch(){
      console.log("search member is " + searchMember);
 }
 
-
 initEvents();
 loadMembers();
