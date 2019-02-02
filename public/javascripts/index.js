@@ -18,9 +18,8 @@ function displayMembers(members) {
         return `<tr>
         <td>${member.lastName}</td>
         <td>${member.firstName}</td>
-        <td>${member.initialSessions}</td>
-        <td>${member.usedSessions}</td> 
         <td>${a-b}</td>
+        <td>${member.endDate}</td> 
         </tr>
         `
 
