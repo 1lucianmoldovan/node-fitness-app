@@ -1,5 +1,7 @@
 function loadMembers() {
     $.ajax("data/members.json").done(function (members) {
+
+        window.globalMembers = members;
         displayMembers(members);
         
     })
@@ -36,12 +38,19 @@ function closeNewMemberForm(){
 }
 
 function initEvents(){
-    // document.getElementById('search').addEventListener('input', memberSearch);
+    document.getElementById('search').addEventListener('input', memberSearch);
 }
 
 function memberSearch(){
-     var searchMember = document.getElementById('search').value;
+     var searchMember = this.value.toLowerCase();
      console.log("search member is " + searchMember);
+     var filteredMembers = globalMembers.filter(function(member){
+        return member.firstName.toLowerCase().includes(searchMember) ||
+                 member.lastName.toLowerCase().includes(searchMember);
+         
+     })
+
+     displayMembers(filteredMembers);
 }
 
 
