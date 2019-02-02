@@ -3,6 +3,10 @@
         "id": "001",
         "firstName": "Peter",
         "lastName": "Griffin",
+        "startDate": "01.02.2019",
+        "endDate": "01.03.2019",
+        "initialSessions": "10",
+        "usedSessions": "7",
         "phone": "0743223342",
         "e-mail": "peter.griffin@gmail.com"
     },
