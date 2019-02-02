@@ -5,9 +5,10 @@ body {
 html{
   padding: 0px; 
 }
-.container{
+.container {
   margin: 50px;
 }
+
 a {
   color: #00B7FF;
 }
@@ -85,3 +86,13 @@ td {
   transform: rotate(45deg);
   cursor: pointer;
 }
+.page-wrap {    
+    display: flex;             
+   }
+.main-content {
+    width: 70%;
+  }
+.main-sidebar {        
+    width: 30%;              
+    flex: 1;                  
+  }
