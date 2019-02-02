@@ -1,8 +1,13 @@
 body {
-  padding: 50px;
+  margin: 0px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
-
+html{
+  padding: 0px; 
+}
+.container{
+  margin: 50px;
+}
 a {
   color: #00B7FF;
 }

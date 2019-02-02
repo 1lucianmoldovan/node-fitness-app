@@ -7,27 +7,31 @@
 </head>
 
 <body>
-    <div id="header">
-        <h1>Admin</h1>
-        <a href="/" id="adminZone"><button> to Home</button></a>
-    </div>
     <div class="container">
-        <table>
-            <thead>
-                <th>Last Name</th>
-                <th>First Name</th>
-                <th>Available Sessions</th>
-                <th>End Date</th>
-            </thead>
-            <tbody></tbody>
-        </table>
+        <div id="header">
+            <h1>Admin</h1>
+            <a href="/" id="adminZone"><button> to Home</button></a>
+        </div>
+        <div >
+            <table>
+                <thead>
+                    <th>Last Name</th>
+                    <th>First Name</th>
+                    <th>Available Sessions</th>
+                    <th>End Date</th>
+                </thead>
+                <tbody></tbody>
+            </table>
 
-        <button id="newMember" onclick="openNewMemberForm()">Add Member</button>
+            <button id="newMember" onclick="openNewMemberForm()">Add Member</button>
+        </div>
+        
+    </div>
 
-    <div  id="modal1" class="sec-modal">
+    <div id="modal1" class="sec-modal">
         <div class="modal-content">
             <div class="close" onclick="closeNewMemberForm()">+</div>
-            
+
             <form action="">
 
                 <input id="lName" name="Nume" type="text" placeholder="Intordu Numele">
@@ -38,13 +42,13 @@
 
                 <input id="e-mail" class="input-number" name="e-mail" type="email" placeholder="E-mail">
                 <input type="submit" value="Submit">
-                
+
             </form>
 
         </div>
     </div>
 
-    </div>
+
     <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
         crossorigin="anonymous"></script>
 
