@@ -12,6 +12,13 @@ html{
 a {
   color: #00B7FF;
 }
+
+#search {
+  margin-bottom: 5px;
+  border-radius: 5px;
+
+}
+
 table {
   border-collapse: collapse;
   width: 100%;
@@ -33,6 +40,7 @@ th {
 
 button{
   margin: 5px;
+  margin-bottom: 20px;
 }
 
 /*
