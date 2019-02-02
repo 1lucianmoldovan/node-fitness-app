@@ -1,3 +1,5 @@
+var idToEdit = "";
+
 function loadMembers() {
     $.ajax("data/members.json").done(function (members) {
 
@@ -51,6 +53,34 @@ function memberSearch(){
      })
 
      displayMembers(filteredMembers);
+}
+
+
+function saveNewMember() {
+
+    var firstName = $('input[name=firstName]').val();
+    var lastName = $('input[name=lastName]').val();
+    var phone = $('input[name=phone]').val();
+    var email = $('input[email]').val();
+    console.log('I am alive', firstName, lastName, phone, email )
+
+    console.log('save contact', firstName, lastName, phone, email);
+
+    var actionUrl = 'members/create'; // inline iff similat cu if (idToEdit){actionUrl=...}else {...}
+
+    $.post(actionUrl, {
+        firstName, // shortcut from Es6 (key is the same as value variable name)
+        lastName,
+        phone: phone, // Es5 loger variant used when key is not the same as value variable name(not the case))
+        email: email
+
+    }).done(function (response) {
+        console.warn("done creating Member", response);
+        if (response.success) {
+            closeNewMemberForm()
+            loadMembers();
+        }
+    })
 }
 
 

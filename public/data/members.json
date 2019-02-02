@@ -1,35 +1,45 @@
 [
-    {
-        "id": "001",
-        "firstName": "Peter",
-        "lastName": "Griffin",
-        "startDate": "01.02.2019",
-        "endDate": "01.03.2019",
-        "initialSessions": "10",
-        "usedSessions": "7",
-        "phone": "0743223342",
-        "e-mail": "peter.griffin@gmail.com"
-    },
-    {
-        "id": "002",
-        "firstName": "Alexandru",
-        "lastName": "Popescu",
-        "startDate": "01.02.2019",
-        "endDate": "01.03.2019",
-        "initialSessions": "10",
-        "usedSessions": "7",
-        "phone": "0743223342",
-        "e-mail": "peter.griffin@gmail.com"
-    },
-    {
-        "id": "003",
-        "firstName": "Mariana",
-        "lastName": "Lazar",
-        "startDate": "01.02.2019",
-        "endDate": "01.03.2019",
-        "initialSessions": "10",
-        "usedSessions": "7",
-        "phone": "0743223342",
-        "e-mail": "peter.griffin@gmail.com"
-    }
+  {
+    "id": "001",
+    "firstName": "Peter",
+    "lastName": "Griffin",
+    "startDate": "01.02.2019",
+    "endDate": "01.03.2019",
+    "initialSessions": "10",
+    "usedSessions": "7",
+    "phone": "0743223342",
+    "email": "peter.griffin@gmail.com"
+  },
+  {
+    "id": "002",
+    "firstName": "Alexandru",
+    "lastName": "Popescu",
+    "startDate": "01.02.2019",
+    "endDate": "01.03.2019",
+    "initialSessions": "10",
+    "usedSessions": "7",
+    "phone": "0743223342",
+    "email": "peter.griffin@gmail.com"
+  },
+  {
+    "id": "003",
+    "firstName": "Mariana",
+    "lastName": "Lazar",
+    "startDate": "01.02.2019",
+    "endDate": "01.03.2019",
+    "initialSessions": "10",
+    "usedSessions": "7",
+    "phone": "0743223342",
+    "email": "peter.griffin@gmail.com"
+  },
+  {
+    "id": 1549116656165,
+    "firstName": "Mircea",
+    "lastName": "Frandes",
+    "startDate": "0",
+    "endDate": "0",
+    "initialSessions": "0",
+    "usedSessions": "0",
+    "phone": "743223342"
+  }
 ]
