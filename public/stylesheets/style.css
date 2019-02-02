@@ -5,12 +5,20 @@ body {
 html{
   padding: 0px; 
 }
-.container{
+.container {
   margin: 50px;
 }
+
 a {
   color: #00B7FF;
 }
+
+#search {
+  margin-bottom: 5px;
+  border-radius: 5px;
+
+}
+
 table {
   border-collapse: collapse;
   width: 100%;
@@ -32,6 +40,7 @@ th {
 
 button{
   margin: 5px;
+  margin-bottom: 20px;
 }
 
 /*
@@ -85,3 +94,15 @@ td {
   transform: rotate(45deg);
   cursor: pointer;
 }
+.page-wrap {    
+    display: flex;             
+   }
+.main-content {
+    width: 70%;
+    flex: 1;
+  }
+.main-sidebar {        
+    width: 300px;
+    background-color: grey;
+    margin: 5px;                  
+  }
