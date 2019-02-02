@@ -28,4 +28,8 @@ function displayMembers(members) {
 document.querySelector("tbody").innerHTML = rows.join('')
 }
 
+function newMemberForm() {
+    
+}
+
 loadMembers();
