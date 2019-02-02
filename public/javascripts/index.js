@@ -32,4 +32,15 @@ function newMemberForm() {
     
 }
 
+function initEvents(){
+    // document.getElementById('search').addEventListener('input', memberSearch);
+}
+
+function memberSearch(){
+     var searchMember = document.getElementById('search').value;
+     console.log("search member is " + searchMember);
+}
+
+
+initEvents();
 loadMembers();
