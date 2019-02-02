@@ -3,7 +3,7 @@ function loadMembers() {
 
         window.globalMembers = members;
         displayMembers(members);
-        
+
     })
 }
 
@@ -20,37 +20,37 @@ function displayMembers(members) {
         return `<tr>
         <td>${member.lastName}</td>
         <td>${member.firstName}</td>
-        <td>${a-b}</td>
+        <td>${a - b}</td>
         <td>${member.endDate}</td> 
         </tr>
         `
 
     })
 
-document.querySelector("tbody").innerHTML = rows.join('')
+    document.querySelector("tbody").innerHTML = rows.join('')
 }
 
 function openNewMemberForm() {
-   document.getElementById("modal1").style.display = "flex";
+    document.getElementById("modal1").style.display = "flex";
 }
-function closeNewMemberForm(){
+function closeNewMemberForm() {
     document.getElementById("modal1").style.display = "none";
 }
 
-function initEvents(){
+function initEvents() {
     document.getElementById('search').addEventListener('input', memberSearch);
 }
 
-function memberSearch(){
-     var searchMember = this.value.toLowerCase();
-     console.log("search member is " + searchMember);
-     var filteredMembers = globalMembers.filter(function(member){
+function memberSearch() {
+    var searchMember = this.value.toLowerCase();
+    
+    var filteredMembers = globalMembers.filter(function (member) {
         return member.firstName.toLowerCase().includes(searchMember) ||
-                 member.lastName.toLowerCase().includes(searchMember);
-         
-     })
+            member.lastName.toLowerCase().includes(searchMember);
 
-     displayMembers(filteredMembers);
+    })
+
+    displayMembers(filteredMembers);
 }
 
 
