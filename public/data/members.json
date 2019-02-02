@@ -1,0 +1,23 @@
+[
+    {
+        "id": "001",
+        "firstName": "Peter",
+        "lastName": "Griffin",
+        "phone": "0743223342",
+        "e-mail": "peter.griffin@gmail.com"
+    },
+    {
+        "id": "002",
+        "firstName": "Alexandru",
+        "lastName": "Popescu",
+        "phone": "0743223342",
+        "e-mail": "peter.griffin@gmail.com"
+    },
+    {
+        "id": "003",
+        "firstName": "Mariana",
+        "lastName": "Lazar",
+        "phone": "0743223342",
+        "e-mail": "peter.griffin@gmail.com"
+    }
+]
