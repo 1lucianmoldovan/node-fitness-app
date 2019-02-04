@@ -24,6 +24,7 @@ function displayMembers(members) {
         <td>${member.firstName}</td>
         <td>${a - b}</td>
         <td>${member.endDate}</td> 
+        <td><a href="/members/delete?id=${member.id}">&#10006;</a></td>
         </tr>
         `
 

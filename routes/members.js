@@ -42,7 +42,25 @@ router.post('/create', function (req, res, next) {
 
     res.json({ success: true });
 
-
-
 });
+
+// /contacts/delete?id
+router.get('/delete', function(req, res, next) {
+    var id = req.query.id;
+  
+    var content = fs.readFileSync('public/data/members.json');
+    var members = JSON.parse(content);
+  
+    var remainingMembers = members.filter(function(member){
+      return member.id != id;
+    });
+  
+    content = JSON.stringify(remainingMembers, null, 2);
+    fs.writeFileSync('public/data/members.json', content);
+    
+    
+    res.redirect('/admin.html');
+  });
+
+
 module.exports = router;
