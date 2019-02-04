@@ -1,4 +1,4 @@
-# Fitness App & Node as server side
+# Fitness App
 
 An APP designed to manage Fitness Studio Members recording daily activity ☺
 
@@ -11,16 +11,35 @@ An APP designed to manage Fitness Studio Members recording daily activity ☺
 ## Content
 
 - CRUD operations:
-    - **C**reate new member
-    - **R**ead contacts from [members.json](public/data/contacts.json) file
-    - **U**pdate contacts
-    - **D**elete contact
+    - **C**reate new member (main window)
+    - **R**ead member from [members.json](public/data/contacts.json) file
+    - **U**pdate member (member detail window)
+    - **D**elete member (member details window)
 
 - Other opperations: 
-    - **S**earch members
+    - **Search** members
     - **Browse** details (personal details + membership status)
+
+- Operations in **Member details**
     - **Add** new sessions
+    - **Update** start date for current subscription
 
 ## Live preview
 
 Open [admin.html](https://1lucianmoldovan.github.io/node-fitness-app/public/admin.html)
+
+## Setup
+
+```
+git clone https://github.com/1lucianmoldovan/node-fitness-app.git
+cd node-fitness-app
+npm install
+```
+
+## Running app
+
+```
+npm run devstart
+```
+
+Open http://localhost:3000/admin.html
