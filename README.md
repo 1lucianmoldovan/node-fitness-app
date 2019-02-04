@@ -1,35 +1,26 @@
-# Configure Node and runn
+# Fitness App & Node as server side
 
-## Steps to configure
+An APP designed to manage Fitness Studio Members recording daily activity ☺
 
-```
-npm install express-generator -g
-express --view=hbs node-fitness-app
-cd node-agenda-app
-npm install --save-dev nodemon
-npm install cors --save
-npm install
-```
-### Enable nodemon
-Edit **package.json** and add next lines:
-```
-"scripts": {
-    "start": "node ./bin/www",
-    "devstart": "nodemon ./bin/www"
-}
-```
+## Structure
 
-## Running the app
+- html/css for main layout
+- js to generate member-list table dynamically
+- static json files as current database
 
-simple run (no auto refresh when server files are changed)
-```
-npm start
-```
-or dev mode (useful when working on server side)
-```
-SET DEBUG=node-fitness-app:* & npm run devstart
-```
-or simple (also on dev mode)
-```
-nodemon
-```
+## Content
+
+- CRUD operations:
+    - **C**reate new member
+    - **R**ead contacts from [members.json](public/data/contacts.json) file
+    - **U**pdate contacts
+    - **D**elete contact
+
+- Other opperations: 
+    - **S**earch members
+    - **Browse** details (personal details + membership status)
+    - **Add** new sessions
+
+## Live preview
+
+Open [admin.html](https://1lucianmoldovan.github.io/node-fitness-app/public/admin.html)
