@@ -34,13 +34,13 @@
                 </div>
             </section>
             <aside class="main-sidebar" style="displayvvxg:none">
-               
-                        <h4>Member details
-                        <ul>Last Name</ul>
-                        <ul>First Name</ul>
-                        <ul>Phone</ul>
-                        <ul>e-mail</ul>
-                    </h4>
+
+                <h4>Member details
+                    <ul>Last Name</ul>
+                    <ul>First Name</ul>
+                    <ul>Phone</ul>
+                    <ul>e-mail</ul>
+                </h4>
             </aside>
 
         </div>
@@ -49,25 +49,51 @@
     <div id="modal1" class="sec-modal">
         <div class="modal-content">
             <div class="close" onclick="closeNewMemberForm()">+</div>
+            <h3>Membership Aplication</h3>
+            <div class="modalLeft">
 
-            <form action="">
+                <form action="">
+                    <h4>Personal Data</h4>
+                    <div class="modalInputs">
+                        <label for="username">Username</label>
+                        <input id="username" name="username" type="text" placeholder="Username">
+                    </div>
+                    <div class="modalInputs">
+                        <label for="firstName">First Name</label>
+                        <input id="firstName" name="firstName" type="text" placeholder="First Name">
+                    </div>
+                    <div class="modalInputs">
+                        <label for="lastName">Last Name</label>
+                        <input id="lastName" name="lastName" type="text" placeholder="Last Name">
+                    </div>
+                    <div class="modalInputs">
+                        <label for="password">Password</label>
+                        <input id="password" name="password" type="text" placeholder="Password">
+                    </div>
+                    <div class="modalInputs">
+                        <label for="confPassword">Confirm Password</label>
+                        <input id="confPassword" name="confPassword" type="text" placeholder="Confirm Password">
+                    </div>
+                    <div class="modalInputs">
+                        <label for="phone">Phone Number</label>
+                        <input id="phone" name="phone" type="number" placeholder="Phone number">
+                    </div>
+                    <div class="modalInputs">
+                        <label for="email">E-mail Adress</label>
+                        <input id="email" name="email" type="email" placeholder="E-mail">
+                    </div>
+                </form>
+            </div>
+            <div class="modalRight">
+                <label for="sesionSelect">Select Sessions</label>
+                <select id="sesionSelect">
+                    <option value="1">1 Session</option>
+                    <option selected="selected" value="4">4 Sessions</option>
+                    <option value="8">8 Sessions</option>
+                    <option value="12">12 Sessions</option>
+                </select>
 
-
-                <label for="firstName">First Name</label>
-                <input id="firstName" name="firstName" type="text" placeholder="Introdu Prenume">
-
-                <label for="lastName">Last Name</label>
-                <input id="lastName" name="lastName" type="text" placeholder="Intordu Numele">
-
-                <label for="phone">Enter Your phone number</label>
-                <input id="phone" name="phone" type="number" placeholder="Phone number">
-
-                <label for="email">Enter Your e-mail</label>
-                <input id="email" name="email" type="email" placeholder="E-mail">
-
-                
-
-            </form>
+            </div>
             <button onclick="saveNewMember()">Submit</button>
 
         </div>

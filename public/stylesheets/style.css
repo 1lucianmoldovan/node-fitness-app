@@ -75,17 +75,24 @@ td {
 .modal-content {
   position: relative;
   width: 500px;
-  height: 300px;
+  
   background-color: aliceblue;
   border-radius: 10px;
   text-align: center;
   padding: 20px;
 }
-.modal-content input {
-  margin: 10px auto;
-  width: 50%;
-  display: block;
+.modalLeft{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  
 }
+.modalLeft input {
+  margin: 10px auto;
+  width: 40%;
+
+}
+
 .close {
   position: absolute;
   top: 0;
@@ -94,6 +101,9 @@ td {
   transform: rotate(45deg);
   cursor: pointer;
 }
+
+
+
 .page-wrap {    
     display: flex;             
    }
