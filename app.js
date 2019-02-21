@@ -6,7 +6,9 @@ var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
-var membersRouter = require('./routes/members');
+var membersRouter = require('./routes/members-db'); // link for members database
+
+// var membersRouter = require('./routes/members');// for json implemebt
 
 var app = express();
 

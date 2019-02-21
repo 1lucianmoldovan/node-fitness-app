@@ -1,7 +1,7 @@
 var idToEdit = "";
 
 function loadMembers() {
-    $.ajax("data/members.json").done(function (members) {
+    $.ajax("members/").done(function (members) {
 
         window.globalMembers = members;
         displayMembers(members);
@@ -81,7 +81,7 @@ function saveNewMember() {
 
     console.log('save contact', firstName, lastName, phone, email);
 
-    var actionUrl = 'members/create'; // inline iff similat cu if (idToEdit){actionUrl=...}else {...}
+    var actionUrl = 'members/create'; // inline if similar cu if (idToEdit){actionUrl=...}else {...}
 
     $.post(actionUrl, {
         firstName, // shortcut from Es6 (key is the same as value variable name)
