@@ -9,13 +9,17 @@ html{
   margin: 50px;
 }
 
+#adminZone button {
+  margin-bottom: 25px;
+}
+
 #comparePasswords{
   color: red;
 }
 
 #newMember {
   float: right;
-  margin: 0;
+  margin-right: 20px;
 }
 
 a {
@@ -27,6 +31,10 @@ a {
   border-radius: 5px;
 
 }
+
+/* .hidden {
+  display: none;
+} */
 
 table {
   border-collapse: collapse;
@@ -47,10 +55,6 @@ th {
   color: white;
 }
 
-button{
-  margin: 5px;
-  margin-bottom: 20px;
-}
 
 /*
 table,
