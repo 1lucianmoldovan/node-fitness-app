@@ -68,6 +68,7 @@ function saveNewMember() {
             }
         })
     }
+    document.getElementById("adMembersForm").reset();
 }
 
 
