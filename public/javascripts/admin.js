@@ -31,37 +31,45 @@ function displayMembers(members) {
 }
 
 function saveNewMember() {
-    var username =  $('input[name=username]').val();
+    var username = $('input[name=username]').val();
     var firstName = $('input[name=firstName]').val();
     var lastName = $('input[name=lastName]').val();
-    var password =  $('input[name=password]').val();
-    var confPassword =  $('input[name=confPassword]').val();
+    var password = $('input[name=password]').val();
+    var confPassword = $('input[name=confPassword]').val();
     var phone = $('input[name=phone]').val();
     var email = $('input[name=email]').val();
-    
-    
-    console.log('save contact',username, firstName, lastName, password, phone, email);
 
-    var actionUrl = idToEdit ? 'members/update?id=' + idToEdit : 'members/create';
+    if (password != confPassword) {
+        document.getElementById('comparePasswords').innerHTML = "Passwords do not match!";
+    }
 
-    $.post(actionUrl, {
-        username,
-        firstName, // shortcut from Es6 (key is the same as value variable name)
-        lastName,
-        password,
-        confPassword,
-        phone: phone, // Es5 loger variant used when key is not the same as value variable name(not the case))
-        email: email
+    else if (password.length < 4) {
+        document.getElementById('comparePasswords').innerHTML = "The password must have at least 3 digits!";
+    }
 
-    }).done(function (response) {
-        idToEdit = "";
-        console.warn("done creating Member", response);
-        if (response.success) {
-            closeNewMemberForm()
-            loadMembers();
-        }
-    })
+    else {
+        var actionUrl = idToEdit ? 'members/update?id=' + idToEdit : 'members/create';
+
+        $.post(actionUrl, {
+            username,
+            firstName, // shortcut from Es6 (key is the same as value variable name)
+            lastName,
+            password,
+            confPassword,
+            phone: phone, // Es5 loger variant used when key is not the same as value variable name(not the case))
+            email: email
+
+        }).done(function (response) {
+            idToEdit = "";
+            console.warn("done creating Member", response);
+            if (response.success) {
+                closeNewMemberForm()
+                loadMembers();
+            }
+        })
+    }
 }
+
 
 //de verificat
 function memberDetails(e) {
@@ -82,7 +90,7 @@ function closeNewMemberForm() {
 function initEvents() {
     document.getElementById('search').addEventListener('input', memberSearch);
 
-// de verificat
+    // de verificat
 
     $('tbody').delegate('tr', 'click', function (e) {
         var id = this.querySelector('.hidden').innerHTML;
