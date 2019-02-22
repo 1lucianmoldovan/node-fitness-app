@@ -36,6 +36,17 @@ cd node-fitness-app
 npm install
 ```
 
+## Data base integration
+
+```
+Donwload & install XAMPP
+Run Xampp -> Start Apache & MySQL
+Go to browser -> localhost -> phpMyAdmin
+Create new db & name it "fitness" (utf8_general_ci)
+Go to "import" tab -> select fitness.sql from project folder -> "GO"
+Open terminal -> npm install 
+```
+
 ## Running app
 
 ```
