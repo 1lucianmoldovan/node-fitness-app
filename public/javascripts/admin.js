@@ -44,7 +44,7 @@ function saveNewMember() {
     }
 
     else if (password.length < 4) {
-        document.getElementById('comparePasswords').innerHTML = "The password must have at least 3 digits!";
+        document.getElementById('comparePasswords').innerHTML = "The password must have at least 4 digits!";
     }
 
     else {
