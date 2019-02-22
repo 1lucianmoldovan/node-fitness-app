@@ -22,6 +22,29 @@ router.get('/', function (req, res, next) {
     })
 });
 
+// /members/create
+
+router.post('/create', function (req, res, next) {
+
+    pool.getConnection(function (err, connection) {
+      if (err) throw err;
+      var username =req.body.username;
+      var firstName = req.body.firstName;
+      var lastName = req.body.lastName;
+      var password = req.body.password;
+      var confPassword = req.body.confPassword;
+      var phone = req.body.phone;
+      var email = req.body.email;
+  
+      const sql = `INSERT INTO members (id, username, firstName, lastName, password, confPassword, phone, email) VALUES (NULL, '${username}', '${firstName}', '${lastName}', '${password}', '${confPassword}', '${phone}', '${email}');`;
+      connection.query(sql, function (err, results) {
+        if (err) throw err;
+        console.log(results);
+        res.json({ success: true });
+      })
+    })
+  });
+
 // /contacts/delete?id=3
 router.get('/delete', function (req, res, next) {
     var id = req.query.id;
@@ -35,6 +58,7 @@ router.get('/delete', function (req, res, next) {
         })
     })
 });
+
 
 
 module.exports = router;
