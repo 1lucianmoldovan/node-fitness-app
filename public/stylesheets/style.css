@@ -13,6 +13,11 @@ html{
   color: red;
 }
 
+#newMember {
+  float: right;
+  margin: 0;
+}
+
 a {
   color: #00B7FF;
 }
