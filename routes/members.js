@@ -44,6 +44,9 @@ router.post('/create', function (req, res, next) {
 
 });
 
+
+
+
 // /contacts/delete?id
 router.get('/delete', function(req, res, next) {
     var id = req.query.id;

@@ -22,7 +22,10 @@ function displayMembers(members) {
         <td>${member.firstName}</td>
         <td>${a - b}</td>
         <td>${member.endDate}</td> 
-        <td><a href="/members/delete?id=${member.id}">&#10006;</a></td>
+        <td>
+        <a href="/members/delete?id=${member.id}">&#10006;</a>
+        <a href="#" class="edit" data-id="${member.id}">&#9998;</a>
+        </td>
         </tr>
         `
     })
@@ -91,15 +94,32 @@ function closeNewMemberForm() {
 function initEvents() {
     document.getElementById('search').addEventListener('input', memberSearch);
 
+    $("tbody").delegate("a.edit", "click", function () {
+        idToEdit = this.getAttribute('data-id');
+
+        var member = globalMembers.find(function (member) {
+            return member.id == idToEdit;
+        });
+        console.log('edit', idToEdit, member);
+        openNewMemberForm();
+        $('input[name=username]').val(member.username);
+        document.querySelector('input[name=firstName]').value = member.firstName;
+        $('input[name=lastName]').val(member.lastName);
+        $('input[name=password]').val(member.password);
+        $('input[name=confPassword]').val(member.confPassword);
+        $('input[name=phone]').val(member.phone);
+        $('input[name=email]').val(member.email);
+    });
+
     // de verificat
 
-    $('tbody').delegate('tr', 'click', function (e) {
-        var id = this.querySelector('.hidden').innerHTML;
-        var member = window.globalMembers.filter(function (member) {
-            return member.id === id;
-        })
-        console.log('clicked: ', member);
-    })
+    // $('tbody').delegate('tr', 'click', function (e) {
+    //     var id = this.querySelector('.hidden').innerHTML;
+    //     var member = window.globalMembers.filter(function (member) {
+    //         return member.id === id;
+    //     })
+    //     console.log('clicked: ', member);
+    // })
 }
 
 function memberSearch() {

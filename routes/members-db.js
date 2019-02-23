@@ -45,6 +45,28 @@ router.post('/create', function (req, res, next) {
     })
   });
 
+ // /members/update
+router.post('/update', function(req, res, next) {
+    var id = req.query.id;
+    var username = req.query.username;
+    var firstName = req.body.firstName;
+    var lastName = req.body.lastName;
+    var password = req.body.password;
+    var confPassword = req.body.confPassword;
+    var phone = req.body.phone;
+    var email= req.body.email;
+  
+    pool.getConnection(function(err, connection) {
+      if(err) throw err;
+      const sql = `UPDATE members SET username='${username}', firstName='${firstName}', lastName='${lastName}', password='${password}', confPassword='${confPassword}', phone='${phone}', email='${email}' WHERE id=${id}`;
+      connection.query(sql, function(err, results) {
+        if(err) throw err;
+        console.log(results);
+        res.json({success: true});
+      })
+    })
+  }); 
+
 // /contacts/delete?id=3
 router.get('/delete', function (req, res, next) {
     var id = req.query.id;
