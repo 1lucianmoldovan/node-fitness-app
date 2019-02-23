@@ -16,7 +16,7 @@ function displayMembers(members) {
         var a = member.initialSessions;
         var b = member.usedSessions;
 
-        return `<tr>
+        return `<a href="#"><tr id="${member.id}">
         <td class="hidden">${member.id}</td>
         <td>${member.lastName}</td>
         <td>${member.firstName}</td>
@@ -27,6 +27,7 @@ function displayMembers(members) {
         <a href="#" class="edit" data-id="${member.id}">&#9998;</a>
         </td>
         </tr>
+        </a>
         `
     })
 
@@ -70,24 +71,15 @@ function saveNewMember() {
             }
         })
     }
-    document.getElementById("adMembersForm").reset();
 }
 
-
-//de verificat
-function memberDetails(e) {
-
-    var memberId = window.globalMembers.map(function (member) {
-        return member.id;
-    });
-    console.log("click ", e);
-}
 
 function openNewMemberForm() {
     document.getElementById("modal1").style.display = "flex";
 }
 function closeNewMemberForm() {
     document.getElementById("modal1").style.display = "none";
+    document.getElementById("adMembersForm").reset();
 }
 
 function initEvents() {
@@ -109,15 +101,15 @@ function initEvents() {
         $('input[name=email]').val(member.email);
     });
 
-    // de verificat
 
-    // $('tbody').delegate('tr', 'click', function (e) {
-    //     var id = this.querySelector('.hidden').innerHTML;
-    //     var member = window.globalMembers.filter(function (member) {
-    //         return member.id === id;
-    //     })
-    //     console.log('clicked: ', member);
-    // })
+    // select row by id
+    $('tbody').delegate('tr', 'click', function () {
+        var id = this.getAttribute("id");
+        var member = window.globalMembers.filter(function (member) {
+            return member.id === id;
+        })
+        console.log('clicked: ', id);
+    })
 }
 
 function memberSearch() {
