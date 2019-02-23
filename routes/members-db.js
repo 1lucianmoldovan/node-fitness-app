@@ -16,7 +16,6 @@ router.get('/', function (req, res, next) {
         const sql = "SELECT * FROM members";
         connection.query(sql, function (err, results) {
             if (err) throw err;
-            console.log(results);
             res.json(results);
         })
     })
@@ -39,7 +38,6 @@ router.post('/create', function (req, res, next) {
       const sql = `INSERT INTO members (id, username, firstName, lastName, password, confPassword, phone, email) VALUES (NULL, '${username}', '${firstName}', '${lastName}', '${password}', '${confPassword}', '${phone}', '${email}');`;
       connection.query(sql, function (err, results) {
         if (err) throw err;
-        console.log(results);
         res.json({ success: true });
       })
     })
@@ -61,7 +59,6 @@ router.post('/update', function(req, res, next) {
       const sql = `UPDATE members SET username='${username}', firstName='${firstName}', lastName='${lastName}', password='${password}', confPassword='${confPassword}', phone='${phone}', email='${email}' WHERE id=${id}`;
       connection.query(sql, function(err, results) {
         if(err) throw err;
-        console.log(results);
         res.json({success: true});
       })
     })

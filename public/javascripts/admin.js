@@ -64,7 +64,6 @@ function saveNewMember() {
 
         }).done(function (response) {
             idToEdit = "";
-            console.warn("done creating Member", response);
             if (response.success) {
                 closeNewMemberForm()
                 loadMembers();
@@ -100,7 +99,6 @@ function initEvents() {
         var member = globalMembers.find(function (member) {
             return member.id == idToEdit;
         });
-        console.log('edit', idToEdit, member);
         openNewMemberForm();
         $('input[name=username]').val(member.username);
         document.querySelector('input[name=firstName]').value = member.firstName;
