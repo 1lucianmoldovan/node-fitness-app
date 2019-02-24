@@ -87,37 +87,10 @@ function initEvents() {
     document.getElementById('search').addEventListener('input', memberSearch);
 
     // member edit
-    $("tbody").delegate("a.edit", "click", function () {
-        idToEdit = this.getAttribute('data-id');
+    $("tbody").delegate("a.edit", "click", memberEdit);
 
-        var member = globalMembers.find(function (member) {
-            return member.id == idToEdit;
-        });
-        openNewMemberForm();
-        $('input[name=username]').val(member.username);
-        document.querySelector('input[name=firstName]').value = member.firstName;
-        $('input[name=lastName]').val(member.lastName);
-        $('input[name=password]').val(member.password);
-        $('input[name=confPassword]').val(member.confPassword);
-        $('input[name=phone]').val(member.phone);
-        $('input[name=email]').val(member.email);
-    });
-
-
-    // select row by id
-    $('tbody').delegate('tr', 'click', function () {
-        var id = this.getAttribute('data-id');
-
-        var member = globalMembers.find(function (member) {
-            return member.id == id;
-        })
-        console.log('clicked: ', id, member.lastName);
-        document.getElementById('userNameDetails').innerHTML = member.username;
-        document.getElementById('lastNameDetails').innerHTML = member.lastName;
-        document.getElementById('firstNameDetails').innerHTML = member.firstName;
-        document.getElementById('phoneDetails').innerHTML = member.phone;
-        document.getElementById('emailDetails').innerHTML = member.email;
-    })
+    //show member details
+    $('tbody').delegate('tr', 'click', showMemberDetails);
 }
 
 function memberSearch() {
@@ -130,6 +103,42 @@ function memberSearch() {
     })
 
     displayMembers(filteredMembers);
+}
+
+function memberEdit () {
+    idToEdit = this.getAttribute('data-id');
+
+    var member = globalMembers.find(function (member) {
+        return member.id == idToEdit;
+    });
+    openNewMemberForm();
+    //TO DO Fix edit username
+    $('input[name=username]').val(member.username);
+    document.querySelector('input[name=firstName]').value = member.firstName;
+    $('input[name=lastName]').val(member.lastName);
+    $('input[name=password]').val(member.password);
+    $('input[name=confPassword]').val(member.confPassword);
+    $('input[name=phone]').val(member.phone);
+    $('input[name=email]').val(member.email);
+}
+
+function showMemberDetails () {
+    var id = this.getAttribute('data-id');
+
+    var member = globalMembers.find(function (member) {
+        return member.id == id;
+    })
+    document.getElementById('userNameDetails').innerHTML = member.username;
+    document.getElementById('lastNameDetails').innerHTML = member.lastName;
+    document.getElementById('firstNameDetails').innerHTML = member.firstName;
+    document.getElementById('phoneDetails').innerHTML = member.phone;
+    document.getElementById('emailDetails').innerHTML = member.email;
+
+    document.getElementById('main-sidebar').style.display = "block";
+}
+
+function hideMemberDetails (){
+    document.getElementById('main-sidebar').style.display = "none";
 }
 
 

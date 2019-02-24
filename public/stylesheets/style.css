@@ -9,6 +9,10 @@ html{
   margin: 50px;
 }
 
+button {
+  cursor: pointer;
+}
+
 #adminZone button {
   margin-bottom: 25px;
 }
@@ -51,8 +55,13 @@ tr:nth-child(even){background-color: turquoise}
 tr:nth-child(odd){background-color: #f2f2f2 }
 
 th {
+  cursor: default;
   background-color: #00aeef;
   color: white;
+}
+
+tr {
+  cursor: pointer;
 }
 
 
@@ -107,7 +116,7 @@ td {
 }
 
 .close {
-  position: absolute;
+  float: right;
   top: 0;
   right: 15px;
   font-size: 20px;
@@ -124,8 +133,9 @@ td {
     width: 70%;
     flex: 1;
   }
-.main-sidebar {        
+#main-sidebar {        
     width: 600px;
+    padding: 15px;
     background-color: grey;
     margin: 5px;                  
   }
