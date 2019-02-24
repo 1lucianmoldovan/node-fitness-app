@@ -36,17 +36,20 @@
                 </div>
             </section>
             <aside id="main-sidebar" style="display:none">
-                    <div class="close" onclick="hideMemberDetails()">+</div>
-                <h4>Member details
-                    <ul>
-                        <li>Username Name: <span id="userNameDetails"></span></li>
-                        <li>Last Name: <span id="lastNameDetails"></span></li>
-                        <li>First Name: <span id="firstNameDetails"></span></li>
-                        <li>Phone: <span id="phoneDetails"></span></li>
-                        <li>e-mail: <span id="emailDetails"></span></li>
-                    </ul>
+                <div class="close" onclick="hideMemberDetails()">+</div>
+                <h4>Member details</h4>
+                <ul>
+                    <li>Username Name: <span id="userNameDetails"></span></li>
+                    <li>Last Name: <span id="lastNameDetails"></span></li>
+                    <li>First Name: <span id="firstNameDetails"></span></li>
+                    <li>Phone: <span id="phoneDetails"></span></li>
+                    <li>e-mail: <span id="emailDetails"></span></li>
+                </ul>
 
-                </h4>
+                <a href="/members/delete?id=${member.id}">&#10006;</a>
+                <a href="#" class="edit">&#9998;</a>
+
+
             </aside>
 
         </div>

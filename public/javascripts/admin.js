@@ -88,6 +88,8 @@ function initEvents() {
 
     // member edit
     $("tbody").delegate("a.edit", "click", memberEdit);
+    // member edit from member details div??
+    $("#main-sidebar").delegate("a.edit", "click", memberEdit);
 
     //show member details
     $('tbody').delegate('tr', 'click', showMemberDetails);
@@ -110,9 +112,9 @@ function memberEdit () {
 
     var member = globalMembers.find(function (member) {
         return member.id == idToEdit;
+        
     });
     openNewMemberForm();
-    //TO DO Fix edit username
     $('input[name=username]').val(member.username);
     document.querySelector('input[name=firstName]').value = member.firstName;
     $('input[name=lastName]').val(member.lastName);
@@ -120,7 +122,10 @@ function memberEdit () {
     $('input[name=confPassword]').val(member.confPassword);
     $('input[name=phone]').val(member.phone);
     $('input[name=email]').val(member.email);
+
+    //TODO auto-refresh main-sidebar when finshied to display updated info
 }
+
 
 function showMemberDetails () {
     var id = this.getAttribute('data-id');
@@ -134,11 +139,11 @@ function showMemberDetails () {
     document.getElementById('phoneDetails').innerHTML = member.phone;
     document.getElementById('emailDetails').innerHTML = member.email;
 
-    document.getElementById('main-sidebar').style.display = "block";
+    $('#main-sidebar').fadeIn();
 }
 
 function hideMemberDetails (){
-    document.getElementById('main-sidebar').style.display = "none";
+    $('#main-sidebar').fadeOut();
 }
 
 

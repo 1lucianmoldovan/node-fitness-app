@@ -46,7 +46,7 @@ router.post('/create', function (req, res, next) {
  // /members/update
 router.post('/update', function(req, res, next) {
     var id = req.query.id;
-    var username = req.query.username;
+    var username = req.body.username;
     var firstName = req.body.firstName;
     var lastName = req.body.lastName;
     var password = req.body.password;
