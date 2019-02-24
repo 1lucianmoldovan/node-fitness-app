@@ -23,7 +23,7 @@ function displayMembers(members) {
         <td>${a - b}</td>
         <td>${member.endDate}</td> 
         <td>
-        <a href="/members/delete?id=${member.id}">&#10006;</a>
+        <a href="/members/delete?id=${member.id}" class="edit">&#10006;</a>
         <a href="#" class="edit" data-id="${member.id}">&#9998;</a>
         </td>
         </tr>
@@ -43,6 +43,11 @@ function saveNewMember() {
     var confPassword = $('input[name=confPassword]').val();
     var phone = $('input[name=phone]').val();
     var email = $('input[name=email]').val();
+    //TODO
+    var startDate = "0";
+    var endDate = "0";
+    var initialSessions = "0";
+    var usedSessions = "0";
 
     if (password != confPassword) {
         document.getElementById('comparePasswords').innerHTML = "Passwords do not match!";
