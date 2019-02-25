@@ -21,19 +21,56 @@ button {
   color: red;
 }
 
-#newMember {
-  float: right;
-  margin-right: 20px;
-}
+
 
 a {
   color: #00B7FF;
 }
 
-#search {
-  margin-bottom: 5px;
-  border-radius: 5px;
+#newMember {
+  color: white;
+  float: right;
+  background: #2f3640;
+ margin: 0 20px 20px 0;
+ border: none;
+ border-radius: 30px;
+ width: 150px;
+ height: 29px;
+ outline: none;
 
+
+
+}
+
+.search-box {
+  float: left;
+  background: #2f3640;
+  width: 195px;
+  height: 15px;
+  border-radius: 30px;
+  padding: 7px;
+  margin: 0;
+}
+
+#search-btn {
+  color: white;
+  float: right;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background:  #2f3640;
+}
+
+.search-txt {
+  border: none;
+  background: none;
+  outline: none;
+  float: left;
+  padding: 0;
+  color: white;
+  font-size: 15px;
+  transition: 0.4s;
+  line-height: 15px;
 }
 
 .hidden {
