@@ -30,10 +30,10 @@ function displayMembers(members) {
 }
 
 function openNewMemberForm() {
-    document.getElementById("modal1").style.display = "flex";
+    $('#modal1').fadeIn();
 }
 function closeNewMemberForm() {
-    document.getElementById("modal1").style.display = "none";
+    $('#modal1').fadeOut();
     document.getElementById("adMembersForm").reset();
 }
 
