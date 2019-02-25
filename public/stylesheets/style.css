@@ -135,7 +135,7 @@ td {
   display: none;
 }
 .modal-content {
-  width: 500px;
+  width: 400px;
   position: absolute;
   top: 50%;
   left: 50%;
@@ -146,16 +146,29 @@ td {
   text-align: center;
   padding: 20px;
 }
-.modalLeft{
+.modalInputs{
   display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  
+  justify-content:space-between;
 }
-.modalLeft input {
-  margin: 10px auto;
-  width: 40%;
-
+.modalBox{
+  color: black;
+ background: #7af4fd;
+ margin: 0 20px 20px 0;
+ border: none;
+ border-radius: 30px;
+ width: 150px;
+ height: 29px;
+ outline: none;
+}
+#submitBtn {
+ color: white;
+ background: #2f3640;
+ margin: 0 20px 20px 0;
+ border: none;
+ border-radius: 30px;
+ width: 150px;
+ height: 29px;
+ outline: none;
 }
 
 .close {

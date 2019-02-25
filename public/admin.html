@@ -71,47 +71,53 @@
                     <h4>Personal Data</h4>
                     <div class="modalInputs">
                         <label for="username">Username</label>
-                        <input id="username" name="username" type="text" placeholder="Username">
+                        <input class="modalBox" id="username" name="username" type="text" placeholder="Username">
                     </div>
                     <div class="modalInputs">
                         <label for="firstName">First Name</label>
-                        <input id="firstName" name="firstName" type="text" placeholder="First Name">
+                        <input class="modalBox" id="firstName" name="firstName" type="text" placeholder="First Name">
                     </div>
                     <div class="modalInputs">
                         <label for="lastName">Last Name</label>
-                        <input id="lastName" name="lastName" type="text" placeholder="Last Name">
+                        <input class="modalBox" id="lastName" name="lastName" type="text" placeholder="Last Name">
                     </div>
                     <div class="modalInputs">
                         <label for="password">Password</label>
-                        <input id="password" name="password" type="text" placeholder="Password">
+                        <input class="modalBox" id="password" name="password" type="text" placeholder="Password">
 
                     </div>
                     <div class="modalInputs">
                         <label for="confPassword">Confirm Password</label>
-                        <input id="confPassword" name="confPassword" type="text" placeholder="Confirm Password">
                         <p id="comparePasswords"></p>
+                        <input class="modalBox" id="confPassword" name="confPassword" type="text" placeholder="Confirm Password">
+                        
                     </div>
                     <div class="modalInputs">
                         <label for="phone">Phone Number</label>
-                        <input id="phone" name="phone" type="number" placeholder="Phone number">
+                        <input class="modalBox" id="phone" name="phone" type="number" placeholder="Phone number">
                     </div>
                     <div class="modalInputs">
                         <label for="email">E-mail Adress</label>
-                        <input id="email" name="email" type="email" placeholder="E-mail">
+                        <input class="modalBox" id="email" name="email" type="email" placeholder="E-mail">
                     </div>
+                    <div class="modalInputs">
+                        <label for="sesionSelect">Select Sessions</label>
+                        <select class="modalBox" id="sesionSelect">
+                            <option value="1">1 Session</option>
+                            <option selected="selected" value="4">4 Sessions</option>
+                            <option value="8">8 Sessions</option>
+                            <option value="12">12 Sessions</option>
+                        </select>
+                    </div>
+                    <button id="submitBtn" onclick="saveNewMember()">Submit</button>
                 </form>
-            </div>
-            <div class="modalRight">
-                <label for="sesionSelect">Select Sessions</label>
-                <select id="sesionSelect">
-                    <option value="1">1 Session</option>
-                    <option selected="selected" value="4">4 Sessions</option>
-                    <option value="8">8 Sessions</option>
-                    <option value="12">12 Sessions</option>
-                </select>
 
             </div>
-            <button onclick="saveNewMember()">Submit</button>
+            <div class="modalRight">
+
+
+            </div>
+            
 
         </div>
     </div>
