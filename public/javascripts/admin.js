@@ -35,6 +35,7 @@ function openNewMemberForm() {
 function closeNewMemberForm() {
     $('#modal1').fadeOut();
     document.getElementById("adMembersForm").reset();
+    document.getElementById('comparePasswords').innerHTML = "";
 }
 
 function saveNewMember() {
