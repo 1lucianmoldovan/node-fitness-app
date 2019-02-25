@@ -27,7 +27,6 @@
                             <th>First Name</th>
                             <th>Available Sessions</th>
                             <th>End Date</th>
-                            <th style="width: 30px"></th>
                         </thead>
                         <tbody></tbody>
                     </table>
@@ -35,7 +34,7 @@
 
                 </div>
             </section>
-            <aside id="main-sidebar" style="display:none">
+            <aside id="main-sidebar">
                 <div class="close" onclick="hideMemberDetails()">+</div>
                 <h3>Member details</h3>
                 <ul>
@@ -46,9 +45,9 @@
                     <li>e-mail: <span id="emailDetails"></span></li>
                 </ul>
 
-                <a href="/members/delete?id=${member.id}" class="edit">&#10006;</a>
-                <a href="#" class="edit">&#9998;</a>
+                <div id="delEdit"></div>
 
+               
 
             </aside>
 
@@ -113,6 +112,8 @@
 
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"
         integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+
+        <script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
     <script src="./javascripts/admin.js"></script>
 </body>

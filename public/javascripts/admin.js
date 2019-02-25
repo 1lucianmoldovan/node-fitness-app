@@ -22,18 +22,20 @@ function displayMembers(members) {
         <td>${member.firstName}</td>
         <td>${a - b}</td>
         <td>${member.endDate}</td> 
-        <td>
-        <a href="/members/delete?id=${member.id}" class="edit">&#10006;</a>
-        <a href="#" class="edit" data-id="${member.id}">&#9998;</a>
-        </td>
         </tr>
-        </a>
-        `
+        </a>`
     })
 
     document.querySelector("tbody").innerHTML = rows.join('')
 }
 
+function openNewMemberForm() {
+    document.getElementById("modal1").style.display = "flex";
+}
+function closeNewMemberForm() {
+    document.getElementById("modal1").style.display = "none";
+    document.getElementById("adMembersForm").reset();
+}
 
 function saveNewMember() {
     var username = $('input[name=username]').val();
@@ -79,27 +81,6 @@ function saveNewMember() {
     }
 }
 
-
-function openNewMemberForm() {
-    document.getElementById("modal1").style.display = "flex";
-}
-function closeNewMemberForm() {
-    document.getElementById("modal1").style.display = "none";
-    document.getElementById("adMembersForm").reset();
-}
-
-function initEvents() {
-    document.getElementById('search').addEventListener('input', memberSearch);
-
-    // member edit
-    $("tbody").delegate("a.edit", "click", memberEdit);
-    // member edit from member details div??
-    $("#main-sidebar").delegate("a.edit", "click", memberEdit);
-
-    //show member details
-    $('tbody').delegate('tr', 'click', showMemberDetails);
-}
-
 function memberSearch() {
     var searchMember = this.value.toLowerCase();
 
@@ -112,12 +93,12 @@ function memberSearch() {
     displayMembers(filteredMembers);
 }
 
-function memberEdit () {
+function memberEdit() {
     idToEdit = this.getAttribute('data-id');
-
+    
     var member = globalMembers.find(function (member) {
         return member.id == idToEdit;
-        
+
     });
     openNewMemberForm();
     $('input[name=username]').val(member.username);
@@ -127,36 +108,52 @@ function memberEdit () {
     $('input[name=confPassword]').val(member.confPassword);
     $('input[name=phone]').val(member.phone);
     $('input[name=email]').val(member.email);
+    
 
     //TODO auto-refresh main-sidebar when finshied to display updated info
 }
 
 
-function showMemberDetails () {
+function showMemberDetails() {
     var id = this.getAttribute('data-id');
-
+    
     var member = globalMembers.find(function (member) {
         return member.id == id;
     })
+
+    var editDel =  `<a href="/members/delete?id=${member.id}" class="edit">&#10006;</a> | 
+                    <a href="#" class="edit" data-id="${member.id}">&#9998;</a>`
+    
+    document.querySelector('#delEdit').innerHTML = editDel;
     document.getElementById('userNameDetails').innerHTML = member.username;
     document.getElementById('lastNameDetails').innerHTML = member.lastName;
     document.getElementById('firstNameDetails').innerHTML = member.firstName;
     document.getElementById('phoneDetails').innerHTML = member.phone;
     document.getElementById('emailDetails').innerHTML = member.email;
-
+   
     $('#main-sidebar').animate({
         width: "toggle"
-      });
+    });
 }
 
-function hideMemberDetails (){
+function hideMemberDetails() {
     $('#main-sidebar').animate({
         width: "toggle"
-      });
+    });
 }
 
+function initEvents() {
+    //member search
+    document.getElementById('search').addEventListener('input', memberSearch);
 
+    
+    //show member details
+    $('tbody').delegate('tr', 'click', showMemberDetails);
 
+    // member edit 
+    $("#main-sidebar").delegate("a.edit", "click", memberEdit);
+}
 
+$('#main-sidebar').hide();
 initEvents();
 loadMembers();
