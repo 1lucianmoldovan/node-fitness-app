@@ -17,7 +17,7 @@
                 </div>
                 <div>
                     <label for="search">Search:
-                        <input type="text" id="search">
+                        <input type="text" id="search" placeholder="Search member">
                     </label>
                     <button id="newMember" onclick="openNewMemberForm()">Add Member</button>
                     <table>
@@ -35,19 +35,22 @@
                 </div>
             </section>
             <aside id="main-sidebar">
-                <div class="close" onclick="hideMemberDetails()">+</div>
-                <h3>Member details</h3>
-                <ul>
-                    <li>Username: <span id="userNameDetails"></span></li>
-                    <li>Last Name: <span id="lastNameDetails"></span></li>
-                    <li>First Name: <span id="firstNameDetails"></span></li>
-                    <li>Phone: <span id="phoneDetails"></span></li>
-                    <li>e-mail: <span id="emailDetails"></span></li>
-                </ul>
-
+                <div class="close" onclick="hideMemberDetails()" title="close">+</div>
+                <h2>Member details</h2>
+                <div id="member-foto">
+                    <div></div>
+                </div>
+                <div id="member-details">
+                    <ul>
+                        <li>Username: <span id="userNameDetails"></span></li>
+                        <li>Last Name: <span id="lastNameDetails"></span></li>
+                        <li>First Name: <span id="firstNameDetails"></span></li>
+                        <li>Phone: <span id="phoneDetails"></span></li>
+                        <li>e-mail: <span id="emailDetails"></span></li>
+                    </ul>
+                </div>
                 <div id="delEdit"></div>
-
-               
+                
 
             </aside>
 
@@ -56,7 +59,7 @@
 
     <div id="modal1" class="sec-modal">
         <div class="modal-content">
-            <div class="close" onclick="closeNewMemberForm()">+</div>
+            <div class="close" onclick="closeNewMemberForm()" title="close">+</div>
             <h3>Membership Aplication</h3>
             <div class="modalLeft">
 
@@ -113,7 +116,7 @@
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"
         integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 
-        <script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
     <script src="./javascripts/admin.js"></script>
 </body>

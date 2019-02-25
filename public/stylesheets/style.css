@@ -96,7 +96,6 @@ td {
   justify-content: center;
   align-items: center;
   display: none;
-
 }
 .modal-content {
   width: 500px;
@@ -105,9 +104,6 @@ td {
   left: 50%;
   -ms-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
-  
-  
-  
   background-color: aliceblue;
   border-radius: 10px;
   text-align: center;
@@ -138,22 +134,46 @@ td {
   color: black;
 }
 
-
 .page-wrap {    
     display: flex;             
    }
+
 .main-content {
     width: 70%;
     flex: 1;
   }
-#main-sidebar {        
-    width: 600px;
+#main-sidebar {   
+  position: relative;     
+    width: 500px;
+    height: 400px;
     padding: 15px;
     border-radius: 10px;
     background-image: linear-gradient(120deg, #a1c4fd 0%, #c2e9fb 100%);
     margin: 5px;                  
   }
 
-  #main-sidebar h3 {
+  #main-sidebar h2 {
     text-align: center;
+    margin-bottom: 50px;
   }
+
+  #member-foto {
+    display: inline-block;
+  }
+
+  #member-foto div {
+    width: 150px;
+    height: 150px;
+    border: 2px solid red;
+  }
+  
+  #member-details {
+    float: right;
+    border:2px solid grey;
+  }
+
+#delEdit {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+}  

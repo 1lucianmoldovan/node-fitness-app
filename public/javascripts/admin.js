@@ -122,8 +122,8 @@ function showMemberDetails() {
         return member.id == id;
     })
 
-    var editDel =  `<a href="/members/delete?id=${member.id}" class="edit">&#10006;</a> | 
-                    <a href="#" class="edit" data-id="${member.id}">&#9998;</a>`
+    var editDel =  `<a href="/members/delete?id=${member.id}" title="Delete member" class="edit">&#10006;</a> | 
+                    <a href="#" title="Edit member" class="edit" data-id="${member.id}">&#9998;</a>`
     
     document.querySelector('#delEdit').innerHTML = editDel;
     document.getElementById('userNameDetails').innerHTML = member.username;
@@ -147,13 +147,13 @@ function initEvents() {
     //member search
     document.getElementById('search').addEventListener('input', memberSearch);
 
-    
     //show member details
     $('tbody').delegate('tr', 'click', showMemberDetails);
 
     // member edit 
     $("#main-sidebar").delegate("a.edit", "click", memberEdit);
 }
+
 
 $('#main-sidebar').hide();
 initEvents();
