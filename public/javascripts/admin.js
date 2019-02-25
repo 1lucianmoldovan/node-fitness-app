@@ -144,11 +144,15 @@ function showMemberDetails () {
     document.getElementById('phoneDetails').innerHTML = member.phone;
     document.getElementById('emailDetails').innerHTML = member.email;
 
-    $('#main-sidebar').fadeIn();
+    $('#main-sidebar').animate({
+        width: "toggle"
+      });
 }
 
 function hideMemberDetails (){
-    $('#main-sidebar').fadeOut();
+    $('#main-sidebar').animate({
+        width: "toggle"
+      });
 }
 
 
