@@ -37,9 +37,6 @@ a {
  width: 150px;
  height: 29px;
  outline: none;
-
-
-
 }
 
 .search-box {
@@ -159,6 +156,7 @@ td {
  width: 150px;
  height: 29px;
  outline: none;
+ padding-left: 10px;
 }
 #submitBtn {
  color: white;
