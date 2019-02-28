@@ -70,44 +70,39 @@
                 <form action="" id="adMembersForm">
                     <h4>Personal Data</h4>
                     <div class="modalInputs">
-                        <label for="username">Username</label>
-                        <input class="modalBox" id="username" name="username" type="text" placeholder="Username">
-                    </div>
-                    <div class="modalInputs">
                         <label for="firstName">First Name</label>
-                        <input class="modalBox" id="firstName" name="firstName" type="text" placeholder="First Name">
+                        <input class="modalBox" id="firstName" name="firstName" type="text">
                     </div>
                     <div class="modalInputs">
                         <label for="lastName">Last Name</label>
-                        <input class="modalBox" id="lastName" name="lastName" type="text" placeholder="Last Name">
+                        <input class="modalBox" id="lastName" name="lastName" type="text">
                     </div>
                     <div class="modalInputs">
                         <label for="password">Password</label>
-                        <input class="modalBox" id="password" name="password" type="text" placeholder="Password">
+                        <input class="modalBox" id="password" name="password" type="text">
 
                     </div>
                     <div class="modalInputs">
                         <label for="confPassword">Confirm Password</label>
                         <p id="comparePasswords"></p>
-                        <input class="modalBox" id="confPassword" name="confPassword" type="text" placeholder="Confirm Password">
-                        
+                        <input class="modalBox" id="confPassword" name="confPassword" type="text">
+
                     </div>
                     <div class="modalInputs">
                         <label for="phone">Phone Number</label>
-                        <input class="modalBox" id="phone" name="phone" type="number" placeholder="Phone number">
+                        <input class="modalBox" id="phone" name="phone" type="number">
                     </div>
                     <div class="modalInputs">
                         <label for="email">E-mail Adress</label>
-                        <input class="modalBox" id="email" name="email" type="email" placeholder="E-mail">
+                        <input class="modalBox" id="email" name="email" type="email">
                     </div>
                     <div class="modalInputs">
                         <label for="sesionSelect">Select Sessions</label>
-                        <select class="modalBox" id="sesionSelect">
-                            <option value="1">1 Session</option>
-                            <option selected="selected" value="4">4 Sessions</option>
-                            <option value="8">8 Sessions</option>
-                            <option value="12">12 Sessions</option>
-                        </select>
+                            <input class="modalBox" id="sesionSelect" name="startDate" type="number">
+                    </div>
+                    <div class="modalInputs">
+                        <label for="startDate">Start date</label>
+                        <input class="modalBox" id="startDate" name="startDate" type="date">
                     </div>
                     <button id="submitBtn" onclick="saveNewMember()">Submit</button>
                 </form>
@@ -117,7 +112,7 @@
 
 
             </div>
-            
+
 
         </div>
     </div>
