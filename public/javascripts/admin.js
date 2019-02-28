@@ -17,7 +17,6 @@ function displayMembers(members) {
         var b = member.usedSessions;
 
         return `<a href="#"><tr data-id="${member.id}">
-        <td class="hidden">${member.id}</td>
         <td><input type="checkbox"></td>
         <td>1</td>
         <td>${member.lastName}</td>
