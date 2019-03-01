@@ -17,7 +17,7 @@ function displayMembers(members) {
         var b = member.usedSessions;
 
         return `<tr>
-        <td><input type="checkbox"></td>
+        <td id="present_checkbox"><input type="checkbox"></td>
         <td class="tcell" data-id="${member.id}">1</td>
         <td class="tcell" data-id="${member.id}">${member.lastName}</td>
         <td class="tcell" data-id="${member.id}">${member.firstName}</td>
