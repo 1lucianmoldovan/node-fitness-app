@@ -16,15 +16,15 @@ function displayMembers(members) {
         var a = member.initialSessions;
         var b = member.usedSessions;
 
-        return `<a href="#"><tr data-id="${member.id}">
+        return `<tr>
         <td><input type="checkbox"></td>
-        <td>1</td>
-        <td>${member.lastName}</td>
-        <td>${member.firstName}</td>
-        <td>${a - b}</td>
-        <td>${member.endDate}</td> 
+        <td class="tcell" data-id="${member.id}">1</td>
+        <td class="tcell" data-id="${member.id}">${member.lastName}</td>
+        <td class="tcell" data-id="${member.id}">${member.firstName}</td>
+        <td class="tcell" data-id="${member.id}">${a - b}</td>
+        <td class="tcell" data-id="${member.id}">${member.endDate}</span></td> 
         </tr>
-        </a>`
+        `
     })
 
     document.querySelector("tbody").innerHTML = rows.join('')
@@ -149,8 +149,9 @@ function initEvents() {
     document.getElementById('search').addEventListener('input', memberSearch);
 
     //show member details
-    $('tbody').delegate('tr', 'click', showMemberDetails);
-
+    $('tbody').delegate("td.tcell", 'click', showMemberDetails);
+    
+    
     // member edit 
     $("#main-sidebar").delegate("a.edit", "click", memberEdit);
 }
