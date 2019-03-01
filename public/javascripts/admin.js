@@ -133,16 +133,13 @@ function showMemberDetails() {
     document.getElementById('firstNameDetails').innerHTML = member.firstName;
     document.getElementById('phoneDetails').innerHTML = member.phone;
     document.getElementById('emailDetails').innerHTML = member.email;
-
-    $('#main-sidebar').animate({
-        width: "toggle"
-    });
+    $('#main-sidebar').show("slow");
+    
 }
 
 function hideMemberDetails() {
-    $('#main-sidebar').animate({
-        width: "toggle"
-    });
+    $('#main-sidebar').hide("slow");
+    
 }
 
 function initEvents() {
@@ -154,6 +151,7 @@ function initEvents() {
 
     //show member details
     $('tbody').delegate("td.tcell", 'click', showMemberDetails);
+
 
 
     // member edit 
