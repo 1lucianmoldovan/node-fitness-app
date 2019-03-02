@@ -7,6 +7,10 @@ var API_URL = {
     DELETE:"members/delete"
 }
 
+if(location.host === "1lucianmoldovan.github.io"){
+    API_URL.READ = "data/members.json"
+}
+
 function loadMembers() {
     $.ajax(API_URL.READ).done(function (members) {
 
