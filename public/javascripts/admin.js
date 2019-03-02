@@ -1,7 +1,14 @@
 var idToEdit = "";
 
+var API_URL = {
+    CREATE: "members/create",
+    READ:"members",
+    UPDATE:"members/update",
+    DELETE:"members/delete"
+}
+
 function loadMembers() {
-    $.ajax("members/").done(function (members) {
+    $.ajax(API_URL.READ).done(function (members) {
 
         window.globalMembers = members;
         displayMembers(members);
@@ -61,7 +68,7 @@ function saveNewMember() {
         return false;
     }
     else {
-        var actionUrl = idToEdit ? 'members/update?id=' + idToEdit : 'members/create';
+        var actionUrl = idToEdit ? API_URL.UPDATE + '?id=' + idToEdit : API_URL.CREATE;
 
         $.post(actionUrl, {
             firstName, // shortcut from Es6 (key is the same as value variable name)
@@ -118,7 +125,7 @@ function showMemberDetails() {
         return member.id == id;
     })
 
-    var editDel = `<a href="/members/delete?id=${member.id}" title="Delete member" class="edit">&#10006;</a> | 
+    var editDel = `<a href="${API_URL.DELETE}?id=${member.id}" title="Delete member" class="edit">&#10006;</a> | 
                     <a href="#" title="Edit member" class="edit" data-id="${member.id}">&#9998;</a>`
 
     document.querySelector('#delEdit').innerHTML = editDel;
