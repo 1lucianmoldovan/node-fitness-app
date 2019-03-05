@@ -36,8 +36,9 @@ router.post('/create', function (req, res, next) {
       var email = req.body.email;
       var availableSessions = req.body.availableSessions;
       var startDate = req.body.startDate;
+      var endDate = req.body.endDate;
   
-      const sql = `INSERT INTO members (id, username, firstName, lastName, password, confPassword, phone, email, availableSessions, startDate) VALUES (NULL, '${username}', '${firstName}', '${lastName}', '${password}', '${confPassword}', '${phone}', '${email}', '${availableSessions}', '${startDate}')`;
+      const sql = `INSERT INTO members (id, username, firstName, lastName, password, confPassword, phone, email, availableSessions, startDate, endDate) VALUES (NULL, '${username}', '${firstName}', '${lastName}', '${password}', '${confPassword}', '${phone}', '${email}', '${availableSessions}', '${startDate}', '${endDate}')`;
       connection.query(sql, function (err, results) {
         if (err) throw err;
         res.json({ success: true });
