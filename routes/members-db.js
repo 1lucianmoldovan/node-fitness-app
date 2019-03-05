@@ -35,8 +35,9 @@ router.post('/create', function (req, res, next) {
       var phone = req.body.phone;
       var email = req.body.email;
       var availableSessions = req.body.availableSessions;
+      var startDate = req.body.startDate;
   
-      const sql = `INSERT INTO members (id, username, firstName, lastName, password, confPassword, phone, email, availableSessions) VALUES (NULL, '${username}', '${firstName}', '${lastName}', '${password}', '${confPassword}', '${phone}', '${email}', '${availableSessions}');`;
+      const sql = `INSERT INTO members (id, username, firstName, lastName, password, confPassword, phone, email, availableSessions, startDate) VALUES (NULL, '${username}', '${firstName}', '${lastName}', '${password}', '${confPassword}', '${phone}', '${email}', '${availableSessions}', '${startDate}')`;
       connection.query(sql, function (err, results) {
         if (err) throw err;
         res.json({ success: true });
@@ -55,10 +56,11 @@ router.post('/update', function(req, res, next) {
     var phone = req.body.phone;
     var email= req.body.email;
     var availableSessions = req.body.availableSessions;
+    var startDate = req.body.startDate;
   
     pool.getConnection(function(err, connection) {
       if(err) throw err;
-      const sql = `UPDATE members SET username='${username}', firstName='${firstName}', lastName='${lastName}', password='${password}', confPassword='${confPassword}', phone='${phone}', email='${email}', availableSessions='${availableSessions}' WHERE id=${id}`;
+      const sql = `UPDATE members SET username='${username}', firstName='${firstName}', lastName='${lastName}', password='${password}', confPassword='${confPassword}', phone='${phone}', email='${email}', availableSessions='${availableSessions}', startDate='${startDate}' WHERE id=${id}`;
       connection.query(sql, function(err, results) {
         if(err) throw err;
         res.json({success: true});

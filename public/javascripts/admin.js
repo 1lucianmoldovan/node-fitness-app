@@ -57,10 +57,17 @@ function saveNewMember() {
     var phone = $('input[name=phone]').val();
     var email = $('input[name=email]').val();
     var availableSessions = $('input[name=availableSessions]').val();
+    var startDate = $('input[name=startDate]').val();
+    // var x = new Date($('input[name=startDate]').val());
+    // var year = x.getFullYear();
+    // var month = x.getMonth();
+    // var date = x.getDate();
+    // var startDate = `${year} / ${month} / ${date}`;
+    
     
  
     //TODO
-    var startDate = "0";
+    
     var endDate = "0";
     var initialSessions = "0";
     var usedSessions = "0";
@@ -83,7 +90,8 @@ function saveNewMember() {
             confPassword,
             phone: phone, // Es5 loger variant used when key is not the same as value variable name(not the case))
             email: email,
-            availableSessions
+            availableSessions,
+            startDate
 
         }).done(function (response) {
             idToEdit = "";
@@ -123,6 +131,7 @@ function memberEdit() {
     $('input[name=phone]').val(member.phone);
     $('input[name=email]').val(member.email);
     $('input[name=availableSessions]').val(member.availableSessions);
+    $('input[name=startDate]').val(member.startDate);
     //TODO auto-refresh main-sidebar when finshied to display updated info & don't hide main-sidebar
 }
 
@@ -142,6 +151,14 @@ function showMemberDetails() {
     document.getElementById('phoneDetails').innerHTML = member.phone;
     document.getElementById('emailDetails').innerHTML = member.email;
     document.getElementById('availableSessionsDetails').innerHTML = member.availableSessions;
+    var stDate = new Date(member.startDate);
+    var year = stDate.getFullYear();
+    var month = stDate.getMonth()+1;
+    month = month < 10 ? '0' + month : month;
+    var date = stDate.getDate();
+    date = date < 10 ? '0' + date : date;
+    
+    document.getElementById('startDateDetails').innerHTML = `${date} / ${month} / ${year}`;
     $('#main-sidebar').show("slow");   
 }
 
