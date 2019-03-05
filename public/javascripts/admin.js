@@ -32,7 +32,7 @@ function displayMembers(members) {
         <td class="tcell" data-id="${member.id}">1</td>
         <td class="tcell" data-id="${member.id}">${member.lastName}</td>
         <td class="tcell" data-id="${member.id}">${member.firstName}</td>
-        <td class="tcell" data-id="${member.id}">${a - b}</td>
+        <td class="tcell" data-id="${member.id}">${member.availableSessions}</td>
         <td class="tcell" data-id="${member.id}">${member.endDate}</span></td> 
         </tr>`
     })
@@ -56,6 +56,8 @@ function saveNewMember() {
     var confPassword = $('input[name=confPassword]').val();
     var phone = $('input[name=phone]').val();
     var email = $('input[name=email]').val();
+    var availableSessions = $('input[name=availableSessions]').val();
+    
  
     //TODO
     var startDate = "0";
@@ -80,7 +82,8 @@ function saveNewMember() {
             password,
             confPassword,
             phone: phone, // Es5 loger variant used when key is not the same as value variable name(not the case))
-            email: email
+            email: email,
+            availableSessions
 
         }).done(function (response) {
             idToEdit = "";
@@ -119,6 +122,7 @@ function memberEdit() {
     $('input[name=confPassword]').val(member.confPassword);
     $('input[name=phone]').val(member.phone);
     $('input[name=email]').val(member.email);
+    $('input[name=availableSessions]').val(member.availableSessions);
     //TODO auto-refresh main-sidebar when finshied to display updated info & don't hide main-sidebar
 }
 
@@ -137,6 +141,7 @@ function showMemberDetails() {
     document.getElementById('firstNameDetails').innerHTML = member.firstName;
     document.getElementById('phoneDetails').innerHTML = member.phone;
     document.getElementById('emailDetails').innerHTML = member.email;
+    document.getElementById('availableSessionsDetails').innerHTML = member.availableSessions;
     $('#main-sidebar').show("slow");   
 }
 
