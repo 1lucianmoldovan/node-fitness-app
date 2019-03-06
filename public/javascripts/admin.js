@@ -46,7 +46,7 @@ today = today.getFullYear() + '-' + ('0' + (today.getMonth() + 1)).slice(-2) + '
 
 function setDisplayDate(date) {
     var year = date.getFullYear();
-    var monthNr = date.getMonth() + 1;
+    var monthNr = date.getMonth();
     var monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
     var month = monthNames[monthNr];
     var day = date.getDate();
@@ -170,8 +170,8 @@ function memberEdit() {
     phone_input.val(member.phone);
     email_input.val(member.email);
     availableSessions_input.val(member.availableSessions);
-    //TODO fix edit startDate    
-    startDate_input.val(member.startDate);
+    //TODO fix edit startDate   !!!!!!!!!!!!!!!!!!!!!!!!! 
+    // startDate_input.val(member.startDate);
     //TODO auto-refresh main-sidebar when finshied to display updated info & don't hide main-sidebar
 }
 

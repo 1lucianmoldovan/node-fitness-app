@@ -22,11 +22,6 @@ button {
 }
 
 
-
-a {
-  color: #00B7FF;
-}
-
 #newMember {
   color: white;
   float: right;
@@ -71,11 +66,6 @@ a {
   transition: 0.4s;
   line-height: 20px;
 }
-
-.hidden {
-  display: none;
-}
-
 
 table {
   border-collapse: collapse;
@@ -192,13 +182,19 @@ td {
   float: right;
   top: 0;
   right: 15px;
-  font-size: 20px;
+  font-size: 25px;
   transform: rotate(45deg);
   cursor: pointer;
 }
+ .close:hover {
+  transform: rotate(135deg);
+  transition-duration: .3s;
+ }
+
 
 .edit {
   color: black;
+  text-decoration: none;
 }
 
 .page-wrap {    
