@@ -12,6 +12,8 @@ var startDate_input = $('input[name=startDate]');
 var delEdit_div = document.querySelector('#delEdit');
 var lastNameDetails_span = document.getElementById('lastNameDetails');
 var firstNameDetails_span = document.getElementById('firstNameDetails');
+
+
 var phoneDetails_span = document.getElementById('phoneDetails');
 var emailDetails_span = document.getElementById('emailDetails');
 var availableSessionsDetails_span = document.getElementById('availableSessionsDetails');
