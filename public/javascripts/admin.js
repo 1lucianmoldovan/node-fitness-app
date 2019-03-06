@@ -44,6 +44,14 @@ function loadMembers() {
 var today = new Date();
 today = today.getFullYear() + '-' + ('0' + (today.getMonth() + 1)).slice(-2) + '-' + ('0' + today.getDate()).slice(-2);
 
+function setDisplayDate (date){
+    var year = date.getFullYear();
+       var month = date.getMonth()+1;
+       var day = date.getDate();
+       var showDate = `${displayDate(day)} / ${displayDate(month)} / ${year}`;
+       return showDate;
+}
+
 function displayDate(a) {
     a = a < 10 ? "0"+a : a;
     return a;
@@ -53,19 +61,16 @@ function displayMembers(members) {
 
     var rows = members.map(function (member) {
 
-       var endDateObj = new Date(member.endDate);
-       var getEndYear = endDateObj.getFullYear();
-       var getEndMonth = endDateObj.getMonth();
-       var getEndDate = endDateObj.getDate();
-       var endDateStr = `${displayDate(getEndDate)} / ${displayDate(getEndMonth)} / ${getEndYear}`;
-
+       var endDate = new Date(member.endDate);
+       endDate = setDisplayDate(endDate);
+   
         return `<tr>
         <td id="present_checkbox"><input type="checkbox"></td>
         <td class="tcell" data-id="${member.id}">1</td>
         <td class="tcell" data-id="${member.id}">${member.lastName}</td>
         <td class="tcell" data-id="${member.id}">${member.firstName}</td>
         <td class="tcell" data-id="${member.id}">${member.availableSessions}</td>
-        <td class="tcell" data-id="${member.id}">${endDateStr}</span></td> 
+        <td class="tcell" data-id="${member.id}">${endDate}</span></td> 
         </tr>`
     })
 
@@ -94,21 +99,14 @@ function saveNewMember() {
     var availableSessions = availableSessions_input.val();
     var startDate = startDate_input.val();
     //set end date
+    //setDisplayDate() doesn't work because Y M D are reversed
     var setEndDate = new Date(startDate);
     setEndDate.setDate(setEndDate.getDate() + 30); 
     var endYear = setEndDate.getFullYear();
     var endMonth = setEndDate.getMonth()+1;
     var endDay = setEndDate.getDate();
     var endDate = `${endYear}-${displayDate(endMonth)}-${displayDate(endDay)}`;
-    
-    
-    
- 
-    //TODO
-    
-    
-    var initialSessions = "0";
-    var usedSessions = "0";
+  
 
     if(password != confPassword) {
         $('#comparePasswords').html("The passwords don't match");
@@ -170,6 +168,7 @@ function memberEdit() {
     phone_input.val(member.phone);
     email_input.val(member.email);
     availableSessions_input.val(member.availableSessions);
+//TODO fix edit startDate    
     startDate_input.val(member.startDate);
     //TODO auto-refresh main-sidebar when finshied to display updated info & don't hide main-sidebar
 }
@@ -191,25 +190,13 @@ function showMemberDetails() {
     emailDetails_span.innerHTML = member.email;
     availableSessionsDetails_span.innerHTML = member.availableSessions;
     //set start date
-    var stDate = new Date(member.startDate);
-    var year = stDate.getFullYear();
-    var month = stDate.getMonth()+1;
-    month = month < 10 ? '0' + month : month;
-    var date = stDate.getDate();
-    date = date < 10 ? '0' + date : date;
-    startDateDetails_span.innerHTML = `${date} / ${month} / ${year}`;
-
+    var startDate = new Date(member.startDate);
+    startDate = setDisplayDate(startDate);
+    startDateDetails_span.innerHTML = startDate;
     //set end date
-    var endDateObj = new Date(member.endDate);
-       var getEndYear = endDateObj.getFullYear();
-       var getEndMonth = endDateObj.getMonth();
-       //TODO month names ???
-       getEndMonth = getEndMonth < 10 ? "0" + getEndMonth : getEndMonth;
-       var getEndDate = endDateObj.getDate();
-       getEndDate = getEndDate < 10 ? "0" + getEndDate : getEndDate;
-       endDateDetails_span.innerHTML = `${getEndDate} / ${getEndMonth} / ${getEndYear}`;
-
-
+    var endDate = new Date(member.endDate);
+    endDate = setDisplayDate(endDate);
+    endDateDetails_span.innerHTML = endDate;
 
     $('#main-sidebar').show("slow");   
 }
