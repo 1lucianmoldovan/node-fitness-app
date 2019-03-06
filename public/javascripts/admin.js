@@ -22,12 +22,12 @@ var endDateDetails_span = document.getElementById('endDateDetails');
 
 var API_URL = {
     CREATE: "members/create",
-    READ:"members",
-    UPDATE:"members/update",
-    DELETE:"members/delete"
+    READ: "members",
+    UPDATE: "members/update",
+    DELETE: "members/delete"
 }
 
-if(location.host === "1lucianmoldovan.github.io"){
+if (location.host === "1lucianmoldovan.github.io") {
     API_URL.READ = "data/members.json"
 }
 
@@ -44,16 +44,18 @@ function loadMembers() {
 var today = new Date();
 today = today.getFullYear() + '-' + ('0' + (today.getMonth() + 1)).slice(-2) + '-' + ('0' + today.getDate()).slice(-2);
 
-function setDisplayDate (date){
+function setDisplayDate(date) {
     var year = date.getFullYear();
-       var month = date.getMonth()+1;
-       var day = date.getDate();
-       var showDate = `${displayDate(day)} / ${displayDate(month)} / ${year}`;
-       return showDate;
+    var monthNr = date.getMonth() + 1;
+    var monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+    var month = monthNames[monthNr];
+    var day = date.getDate();
+    var showDate = `${displayDate(day)} - ${month} - ${year}`;
+    return showDate;
 }
 
 function displayDate(a) {
-    a = a < 10 ? "0"+a : a;
+    a = a < 10 ? "0" + a : a;
     return a;
 }
 
@@ -61,9 +63,9 @@ function displayMembers(members) {
 
     var rows = members.map(function (member) {
 
-       var endDate = new Date(member.endDate);
-       endDate = setDisplayDate(endDate);
-   
+        var endDate = new Date(member.endDate);
+        endDate = setDisplayDate(endDate);
+
         return `<tr>
         <td id="present_checkbox"><input type="checkbox"></td>
         <td class="tcell" data-id="${member.id}">1</td>
@@ -77,7 +79,7 @@ function displayMembers(members) {
     document.querySelector("tbody").innerHTML = rows.join('')
 }
 
-    
+
 
 function openNewMemberForm() {
     startDate_input.val(today);
@@ -101,18 +103,18 @@ function saveNewMember() {
     //set end date
     //setDisplayDate() doesn't work because Y M D are reversed
     var setEndDate = new Date(startDate);
-    setEndDate.setDate(setEndDate.getDate() + 30); 
+    setEndDate.setDate(setEndDate.getDate() + 30);
     var endYear = setEndDate.getFullYear();
-    var endMonth = setEndDate.getMonth()+1;
+    var endMonth = setEndDate.getMonth() + 1;
     var endDay = setEndDate.getDate();
     var endDate = `${endYear}-${displayDate(endMonth)}-${displayDate(endDay)}`;
-  
 
-    if(password != confPassword) {
+
+    if (password != confPassword) {
         $('#comparePasswords').html("The passwords don't match");
         return false;
     }
-    else if(password.length < 4) {
+    else if (password.length < 4) {
         $('#comparePasswords').html("The password must have at least 4 digits!");
         return false;
     }
@@ -160,7 +162,7 @@ function memberEdit() {
 
     });
     openNewMemberForm();
-    
+
     firstName_input.val(member.firstName);
     lastName_input.val(member.lastName);
     password_input.val(member.password);
@@ -168,7 +170,7 @@ function memberEdit() {
     phone_input.val(member.phone);
     email_input.val(member.email);
     availableSessions_input.val(member.availableSessions);
-//TODO fix edit startDate    
+    //TODO fix edit startDate    
     startDate_input.val(member.startDate);
     //TODO auto-refresh main-sidebar when finshied to display updated info & don't hide main-sidebar
 }
@@ -198,11 +200,11 @@ function showMemberDetails() {
     endDate = setDisplayDate(endDate);
     endDateDetails_span.innerHTML = endDate;
 
-    $('#main-sidebar').show("slow");   
+    $('#main-sidebar').show("slow");
 }
 
 function hideMemberDetails() {
-    $('#main-sidebar').hide("slow");  
+    $('#main-sidebar').hide("slow");
 }
 
 function initEvents() {
