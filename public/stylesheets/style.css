@@ -42,32 +42,34 @@ a {
 .search-box {
   float: left;
   background: #2f3640;
-  width: 195px;
-  height: 15px;
+  width: 160px;
   border-radius: 30px;
-  padding: 7px;
+  padding: 3px;
+  padding-left: 10px;
   margin: 0;
 }
 
 #search-btn {
-  color: white;
+  color:  #2f3640;
   float: right;
   width: 15px;
   height: 15px;
   border-radius: 50%;
-  background:  #2f3640;
+  background: white;
+  padding: 3px;
+  
 }
 
 .search-txt {
   border: none;
   background: none;
   outline: none;
-  float: left;
+  width: 130px;
   padding: 0;
   color: white;
   font-size: 15px;
   transition: 0.4s;
-  line-height: 15px;
+  line-height: 20px;
 }
 
 .hidden {
@@ -212,24 +214,30 @@ td {
     margin: 5px;                  
   }
 
-  #main-sidebar h2 {
+#main-sidebar h2 {
     text-align: center;
     margin-bottom: 50px;
   }
 
-  #member-foto {
+  
+
+#member-foto {
     display: inline-block;
   }
 
-  #member-foto div {
+#member-foto div {
     width: 150px;
     height: 150px;
     border: 2px solid red;
   }
   
-  #member-details {
+#member-details {
     float: right;
     border:2px solid grey;
+  }
+
+  #member-details ul{
+    list-style-type: none;
   }
 
 #delEdit {
