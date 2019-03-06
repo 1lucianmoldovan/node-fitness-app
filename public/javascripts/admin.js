@@ -1,5 +1,23 @@
 var idToEdit = "";
 
+//caching DOM elements
+var firstName_input = $('input[name=firstName]');
+var lastName_input = $('input[name=lastName]');
+var password_input = $('input[name=password]');
+var confPassword_input = $('input[name=confPassword]');
+var phone_input = $('input[name=phone]');
+var email_input = $('input[name=email]');
+var availableSessions_input = $('input[name=availableSessions]');
+var startDate_input = $('input[name=startDate]');
+var delEdit_div = document.querySelector('#delEdit');
+var lastNameDetails_span = document.getElementById('lastNameDetails');
+var firstNameDetails_span = document.getElementById('firstNameDetails');
+var phoneDetails_span = document.getElementById('phoneDetails');
+var emailDetails_span = document.getElementById('emailDetails');
+var availableSessionsDetails_span = document.getElementById('availableSessionsDetails');
+var startDateDetails_span = document.getElementById('startDateDetails');
+var endDateDetails_span = document.getElementById('endDateDetails');
+
 var API_URL = {
     CREATE: "members/create",
     READ:"members",
@@ -20,6 +38,11 @@ function loadMembers() {
     })
 }
 
+function displayDate(a) {
+    a = a < 10 ? "0"+a : a;
+    return a;
+}
+
 function displayMembers(members) {
 
     var rows = members.map(function (member) {
@@ -27,11 +50,8 @@ function displayMembers(members) {
        var endDateObj = new Date(member.endDate);
        var getEndYear = endDateObj.getFullYear();
        var getEndMonth = endDateObj.getMonth();
-       //TODO month names
-       getEndMonth = getEndMonth < 10 ? "0" + getEndMonth : getEndMonth;
        var getEndDate = endDateObj.getDate();
-       getEndDate = getEndDate < 10 ? "0" + getEndDate : getEndDate;
-       var endDateStr = `${getEndDate} / ${getEndMonth} / ${getEndYear}`;
+       var endDateStr = `${displayDate(getEndDate)} / ${displayDate(getEndMonth)} / ${getEndYear}`;
 
         return `<tr>
         <td id="present_checkbox"><input type="checkbox"></td>
@@ -56,23 +76,21 @@ function closeNewMemberForm() {
 }
 
 function saveNewMember() {
-    var firstName = $('input[name=firstName]').val();
-    var lastName = $('input[name=lastName]').val();
-    var password = $('input[name=password]').val();
-    var confPassword = $('input[name=confPassword]').val();
-    var phone = $('input[name=phone]').val();
-    var email = $('input[name=email]').val();
-    var availableSessions = $('input[name=availableSessions]').val();
-    var startDate = $('input[name=startDate]').val();
+    var firstName = firstName_input.val();
+    var lastName = lastName_input.val();
+    var password = password_input.val();
+    var confPassword = confPassword_input.val();
+    var phone = phone_input.val();
+    var email = email_input.val();
+    var availableSessions = availableSessions_input.val();
+    var startDate = startDate_input.val();
     //set end date
     var setEndDate = new Date(startDate);
     setEndDate.setDate(setEndDate.getDate() + 30); 
     var endYear = setEndDate.getFullYear();
     var endMonth = setEndDate.getMonth()+1;
-    endMonth = endMonth < 10 ? "0" + endMonth : endMonth;
     var endDay = setEndDate.getDate();
-    endDay = endDay < 10 ? "0" + endDay : endDay;
-    var endDate = `${endYear}-${endMonth}-${endDay}`;
+    var endDate = `${endYear}-${displayDate(endMonth)}-${displayDate(endDay)}`;
     
     
     
@@ -136,14 +154,14 @@ function memberEdit() {
     });
     openNewMemberForm();
     
-    $('input[name=firstName]').val(member.firstName);
-    $('input[name=lastName]').val(member.lastName);
-    $('input[name=password]').val(member.password);
-    $('input[name=confPassword]').val(member.confPassword);
-    $('input[name=phone]').val(member.phone);
-    $('input[name=email]').val(member.email);
-    $('input[name=availableSessions]').val(member.availableSessions);
-    $('input[name=startDate]').val(member.startDate);
+    firstName_input.val(member.firstName);
+    lastName_input.val(member.lastName);
+    password_input.val(member.password);
+    confPassword_input.val(member.confPassword);
+    phone_input.val(member.phone);
+    email_input.val(member.email);
+    availableSessions_input.val(member.availableSessions);
+    startDate_input.val(member.startDate);
     //TODO auto-refresh main-sidebar when finshied to display updated info & don't hide main-sidebar
 }
 
@@ -157,12 +175,12 @@ function showMemberDetails() {
     var editDel = `<a href="${API_URL.DELETE}?id=${member.id}" title="Delete member" class="edit">&#10006;</a> | 
                     <a href="#" title="Edit member" class="edit" data-id="${member.id}">&#9998;</a>`
 
-    document.querySelector('#delEdit').innerHTML = editDel;
-    document.getElementById('lastNameDetails').innerHTML = member.lastName;
-    document.getElementById('firstNameDetails').innerHTML = member.firstName;
-    document.getElementById('phoneDetails').innerHTML = member.phone;
-    document.getElementById('emailDetails').innerHTML = member.email;
-    document.getElementById('availableSessionsDetails').innerHTML = member.availableSessions;
+    delEdit_div.innerHTML = editDel;
+    lastNameDetails_span.innerHTML = member.lastName;
+    firstNameDetails_span.innerHTML = member.firstName;
+    phoneDetails_span.innerHTML = member.phone;
+    emailDetails_span.innerHTML = member.email;
+    availableSessionsDetails_span.innerHTML = member.availableSessions;
     //set start date
     var stDate = new Date(member.startDate);
     var year = stDate.getFullYear();
@@ -170,7 +188,7 @@ function showMemberDetails() {
     month = month < 10 ? '0' + month : month;
     var date = stDate.getDate();
     date = date < 10 ? '0' + date : date;
-    document.getElementById('startDateDetails').innerHTML = `${date} / ${month} / ${year}`;
+    startDateDetails_span.innerHTML = `${date} / ${month} / ${year}`;
 
     //set end date
     var endDateObj = new Date(member.endDate);
@@ -180,7 +198,7 @@ function showMemberDetails() {
        getEndMonth = getEndMonth < 10 ? "0" + getEndMonth : getEndMonth;
        var getEndDate = endDateObj.getDate();
        getEndDate = getEndDate < 10 ? "0" + getEndDate : getEndDate;
-       document.getElementById('endDateDetails').innerHTML = `${getEndDate} / ${getEndMonth} / ${getEndYear}`;
+       endDateDetails_span.innerHTML = `${getEndDate} / ${getEndMonth} / ${getEndYear}`;
 
 
 
