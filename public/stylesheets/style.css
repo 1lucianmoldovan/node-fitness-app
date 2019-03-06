@@ -86,6 +86,11 @@ tbody td:first-of-type {
   width: 20px;
 }
 
+tbody tr {
+  border: 1px solid #aaaaaa;
+  border-style: solid none;
+}
+
 thead th:first-of-type {
   text-align: center;
 }
