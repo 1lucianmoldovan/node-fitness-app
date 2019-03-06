@@ -38,6 +38,10 @@ function loadMembers() {
     })
 }
 
+//get current date for start date input default value
+var today = new Date();
+today = today.getFullYear() + '-' + ('0' + (today.getMonth() + 1)).slice(-2) + '-' + ('0' + today.getDate()).slice(-2);
+
 function displayDate(a) {
     a = a < 10 ? "0"+a : a;
     return a;
@@ -66,7 +70,10 @@ function displayMembers(members) {
     document.querySelector("tbody").innerHTML = rows.join('')
 }
 
+    
+
 function openNewMemberForm() {
+    startDate_input.val(today);
     $('#modal1').fadeIn();
 }
 function closeNewMemberForm() {
