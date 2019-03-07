@@ -13,13 +13,13 @@ var delEdit_div = document.querySelector('#delEdit');
 var lastNameDetails_span = document.getElementById('lastNameDetails');
 var firstNameDetails_span = document.getElementById('firstNameDetails');
 
-
 var phoneDetails_span = document.getElementById('phoneDetails');
 var emailDetails_span = document.getElementById('emailDetails');
 var availableSessionsDetails_span = document.getElementById('availableSessionsDetails');
 var startDateDetails_span = document.getElementById('startDateDetails');
 var endDateDetails_span = document.getElementById('endDateDetails');
 
+//TODO update and papulate members.json for live preview
 var API_URL = {
     CREATE: "members/create",
     READ: "members",
@@ -44,6 +44,7 @@ function loadMembers() {
 var today = new Date();
 today = today.getFullYear() + '-' + ('0' + (today.getMonth() + 1)).slice(-2) + '-' + ('0' + today.getDate()).slice(-2);
 
+//set display date 
 function setDisplayDate(date) {
     var year = date.getFullYear();
     var monthNr = date.getMonth();
@@ -54,11 +55,14 @@ function setDisplayDate(date) {
     return showDate;
 }
 
+//CURRENTLY NOT USING
+//put a 0 at the begining of month and day if necessary 
 function displayDate(a) {
     a = a < 10 ? "0" + a : a;
     return a;
 }
 
+//display members table
 function displayMembers(members) {
 
     var rows = members.map(function (member) {
@@ -91,6 +95,7 @@ function closeNewMemberForm() {
     document.getElementById('comparePasswords').innerHTML = "";
 }
 
+//save member in db
 function saveNewMember() {
     var firstName = firstName_input.val();
     var lastName = lastName_input.val();
@@ -109,7 +114,7 @@ function saveNewMember() {
     var endDay = setEndDate.getDate();
     var endDate = `${endYear}-${displayDate(endMonth)}-${displayDate(endDay)}`;
 
-
+    //member input validation
     if (password != confPassword) {
         $('#comparePasswords').html("The passwords don't match");
         return false;
@@ -142,6 +147,7 @@ function saveNewMember() {
     }
 }
 
+//search member
 function memberSearch() {
     var searchMember = this.value.toLowerCase();
 
@@ -154,6 +160,8 @@ function memberSearch() {
     displayMembers(filteredMembers);
 }
 
+
+//edit member
 function memberEdit() {
     idToEdit = this.getAttribute('data-id');
 
@@ -174,6 +182,8 @@ function memberEdit() {
     //TODO auto-refresh main-sidebar when finshied to display updated info & don't hide main-sidebar
 }
 
+
+//show member details in main side-bar
 function showMemberDetails() {
     var id = this.getAttribute('data-id');
 
@@ -202,9 +212,11 @@ function showMemberDetails() {
     $('#main-sidebar').show("slow");
 }
 
+//hide main sidebar 
 function hideMemberDetails() {
     $('#main-sidebar').hide("slow");
 }
+
 
 function initEvents() {
     //member search

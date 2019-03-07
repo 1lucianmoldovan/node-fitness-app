@@ -6,13 +6,14 @@ An APP designed to manage Fitness Studio Members recording daily activity ☺
 
 - html/css for main layout
 - js to generate member-list table dynamically
-- static json files as current database
+- SQL database to store members
+- static json files to use as database for live preview
 
 ## Content
 
 - CRUD operations:
     - **C**reate new member (main window)
-    - **R**ead member from [members.json](public/data/contacts.json) file
+    - **R**ead members from db (main window)
     - **U**pdate member (member detail window)
     - **D**elete member (member details window)
 
