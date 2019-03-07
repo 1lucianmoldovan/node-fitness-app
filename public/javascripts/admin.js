@@ -19,7 +19,7 @@ var availableSessionsDetails_span = document.getElementById('availableSessionsDe
 var startDateDetails_span = document.getElementById('startDateDetails');
 var endDateDetails_span = document.getElementById('endDateDetails');
 
-//TODO update and papulate members.json for live preview
+//TODO update and populate members.json for live preview
 var API_URL = {
     CREATE: "members/create",
     READ: "members",
@@ -44,6 +44,15 @@ function loadMembers() {
 var today = new Date();
 today = today.getFullYear() + '-' + ('0' + (today.getMonth() + 1)).slice(-2) + '-' + ('0' + today.getDate()).slice(-2);
 
+//set save date in db
+function saveDate(date) {
+    var year = date.getFullYear();
+    var month = date.getMonth() + 1;
+    var day = date.getDate();
+    date = `${year}-${displayDate(month)}-${displayDate(day)}`;
+    return date;
+}
+
 //set display date 
 function setDisplayDate(date) {
     var year = date.getFullYear();
@@ -55,8 +64,7 @@ function setDisplayDate(date) {
     return showDate;
 }
 
-//CURRENTLY NOT USING
-//put a 0 at the begining of month and day if necessary 
+//put a 0 at the begining of month and day if necessary (for db)
 function displayDate(a) {
     a = a < 10 ? "0" + a : a;
     return a;
@@ -106,13 +114,9 @@ function saveNewMember() {
     var availableSessions = availableSessions_input.val();
     var startDate = startDate_input.val();
     //set end date
-    //setDisplayDate() doesn't work because Y M D are reversed
-    var setEndDate = new Date(startDate);
-    setEndDate.setDate(setEndDate.getDate() + 30);
-    var endYear = setEndDate.getFullYear();
-    var endMonth = setEndDate.getMonth() + 1;
-    var endDay = setEndDate.getDate();
-    var endDate = `${endYear}-${displayDate(endMonth)}-${displayDate(endDay)}`;
+    var endDate = new Date(startDate);
+    endDate.setDate(endDate.getDate() + 30);
+    endDate = saveDate(endDate);
 
     //member input validation
     if (password != confPassword) {
@@ -178,7 +182,9 @@ function memberEdit() {
     phone_input.val(member.phone);
     email_input.val(member.email);
     availableSessions_input.val(member.availableSessions);
-    startDate_input.val(today);
+    var startDate = new Date(member.startDate);
+    startDate = saveDate(startDate);
+    startDate_input.val(startDate);
     //TODO auto-refresh main-sidebar when finshied to display updated info & don't hide main-sidebar
 }
 
