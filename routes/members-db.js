@@ -58,10 +58,11 @@ router.post('/update', function(req, res, next) {
     var email= req.body.email;
     var availableSessions = req.body.availableSessions;
     var startDate = req.body.startDate;
+    var endDate = req.body.endDate;
   
     pool.getConnection(function(err, connection) {
       if(err) throw err;
-      const sql = `UPDATE members SET username='${username}', firstName='${firstName}', lastName='${lastName}', password='${password}', confPassword='${confPassword}', phone='${phone}', email='${email}', availableSessions='${availableSessions}', startDate='${startDate}' WHERE id=${id}`;
+      const sql = `UPDATE members SET username='${username}', firstName='${firstName}', lastName='${lastName}', password='${password}', confPassword='${confPassword}', phone='${phone}', email='${email}', availableSessions='${availableSessions}', startDate='${startDate}', endDate='${endDate}' WHERE id=${id}`;
       connection.query(sql, function(err, results) {
         if(err) throw err;
         res.json({success: true});

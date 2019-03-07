@@ -66,7 +66,7 @@ function displayMembers(members) {
         var endDate = new Date(member.endDate);
         endDate = setDisplayDate(endDate);
 
-        return `<tr>
+        return `<tr data-id="${member.id}">
         <td id="present_checkbox"><input type="checkbox"></td>
         <td class="tcell" data-id="${member.id}">1</td>
         <td class="tcell" data-id="${member.id}">${member.lastName}</td>
@@ -171,7 +171,7 @@ function memberEdit() {
     email_input.val(member.email);
     availableSessions_input.val(member.availableSessions);
     //TODO fix edit startDate   !!!!!!!!!!!!!!!!!!!!!!!!! 
-    // startDate_input.val(member.startDate);
+    startDate_input.val(member.startDate);
     //TODO auto-refresh main-sidebar when finshied to display updated info & don't hide main-sidebar
 }
 
