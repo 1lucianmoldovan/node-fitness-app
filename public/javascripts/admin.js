@@ -170,8 +170,7 @@ function memberEdit() {
     phone_input.val(member.phone);
     email_input.val(member.email);
     availableSessions_input.val(member.availableSessions);
-    //TODO fix edit startDate   !!!!!!!!!!!!!!!!!!!!!!!!! 
-    startDate_input.val(member.startDate);
+    startDate_input.val(today);
     //TODO auto-refresh main-sidebar when finshied to display updated info & don't hide main-sidebar
 }
 
