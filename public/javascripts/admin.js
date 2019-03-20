@@ -1,3 +1,15 @@
+// TODO!!!
+
+// add sessions
+// present
+// rowcount
+//memberphoto
+
+
+
+
+
+
 var idToEdit = "";
 
 //caching DOM elements
@@ -73,14 +85,18 @@ function displayDate(a) {
 //display members table
 function displayMembers(members) {
 
+
+
     var rows = members.map(function (member) {
 
         var endDate = new Date(member.endDate);
         endDate = setDisplayDate(endDate);
 
+        var rowsCount = 1;
+
         return `<tr data-id="${member.id}">
         <td id="present_checkbox"><input type="checkbox"></td>
-        <td class="tcell" data-id="${member.id}">1</td>
+        <td class="tcell" data-id="${member.id}">${rowsCount}</td>
         <td class="tcell" data-id="${member.id}">${member.lastName}</td>
         <td class="tcell" data-id="${member.id}">${member.firstName}</td>
         <td class="tcell" data-id="${member.id}">${member.availableSessions}</td>
