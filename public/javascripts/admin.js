@@ -30,6 +30,7 @@ var emailDetails_span = document.getElementById('emailDetails');
 var availableSessionsDetails_span = document.getElementById('availableSessionsDetails');
 var startDateDetails_span = document.getElementById('startDateDetails');
 var endDateDetails_span = document.getElementById('endDateDetails');
+var sessionDetails_div = document.getElementById('sessions');
 
 //TODO update and populate members.json for live preview
 var API_URL = {
@@ -201,7 +202,6 @@ function memberEdit() {
     var startDate = new Date(member.startDate);
     startDate = saveDate(startDate);
     startDate_input.val(startDate);
-    //TODO auto-refresh main-sidebar when finshied to display updated info & don't hide main-sidebar
 }
 
 
@@ -212,6 +212,11 @@ function showMemberDetails() {
     var member = globalMembers.find(function (member) {
         return member.id == id;
     })
+
+    var addSessions = `<div class="addSessionsButton" data-id="${member.id}">Add 1 session</div>
+                        <div class="addSessionsButton" data-id="${member.id}">Add 4 sessions</div>
+                        <div class="addSessionsButton" data-id="${member.id}">Add 8 sessions</div>
+                        <div class="addSessionsButton" data-id="${member.id}">Add 12 sessions</div>`
 
     var editDel = `<a href="${API_URL.DELETE}?id=${member.id}" title="Delete member" class="edit">&#10006;</a> | 
                     <a href="#" title="Edit member" class="edit" data-id="${member.id}">&#9998;</a>`
@@ -230,6 +235,8 @@ function showMemberDetails() {
     var endDate = new Date(member.endDate);
     endDate = setDisplayDate(endDate);
     endDateDetails_span.innerHTML = endDate;
+
+    sessionDetails_div.innerHTML = addSessions;
 
     $('#main-sidebar').show("slow");
 }
