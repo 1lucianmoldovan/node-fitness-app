@@ -213,14 +213,16 @@ function showMemberDetails() {
         return member.id == id;
     })
 
-    var addSessions = `<div class="addSessionsButton" data-id="${member.id}">Add 1 session</div>
-                        <div class="addSessionsButton" data-id="${member.id}">Add 4 sessions</div>
-                        <div class="addSessionsButton" data-id="${member.id}">Add 8 sessions</div>
-                        <div class="addSessionsButton" data-id="${member.id}">Add 12 sessions</div>`
+    var addSessions = `<div class="addSessionsButton oneSession" data-id="${member.id}">Add 1 session</div>
+                        <div class="addSessionsButton fourSessions" data-id="${member.id}">Add 4 sessions</div>
+                        <div class="addSessionsButton eightSessions" data-id="${member.id}">Add 8 sessions</div>
+                        <div class="addSessionsButton twelveSessions" data-id="${member.id}">Add 12 sessions</div>`
+                        console.log('member is is ' +  member.id + " and id is " + id);
 
     var editDel = `<a href="${API_URL.DELETE}?id=${member.id}" title="Delete member" class="edit">&#10006;</a> | 
                     <a href="#" title="Edit member" class="edit" data-id="${member.id}">&#9998;</a>`
 
+    sessionDetails_div.innerHTML = addSessions;                
     delEdit_div.innerHTML = editDel;
     lastNameDetails_span.innerHTML = member.lastName;
     firstNameDetails_span.innerHTML = member.firstName;
@@ -236,7 +238,7 @@ function showMemberDetails() {
     endDate = setDisplayDate(endDate);
     endDateDetails_span.innerHTML = endDate;
 
-    sessionDetails_div.innerHTML = addSessions;
+    
 
     $('#main-sidebar').show("slow");
 }
@@ -246,6 +248,37 @@ function hideMemberDetails() {
     $('#main-sidebar').hide("slow");
 }
 
+//TODO add new sessions WORK IN PROGRESS
+function addNewSessions (){
+    console.log('click on 1 session');
+    var id = this.getAttribute('data-id');
+    var member = globalMembers.find(function (member) {
+        return member.id == id;
+    })
+  
+    var availableSessions = member.availableSessions;
+    console.log('av sessions ' + availableSessions  + ' member id is ' + member.id);
+    availableSessions = parseInt(availableSessions) + 1;
+    console.log('av sessions ' + availableSessions );
+
+    
+
+        // $.post(API_URL.UPDATE + '?id=' + idToEdit, {
+           
+        //     availableSessions,
+        //     // startDate,
+        //     // // endDate
+
+        // }).done(function (response) {
+        //     idToEdit = "";
+        //     if (response.success) {
+        //         loadMembers();
+                
+        //     }
+        // })
+      
+
+}
 
 function initEvents() {
     //member search
@@ -259,6 +292,9 @@ function initEvents() {
 
     // member edit 
     $("#main-sidebar").delegate("a.edit", "click", memberEdit);
+
+    $("#main-sidebar").delegate(".oneSession", "click", addNewSessions);
+
 }
 
 $('.sec-modal').hide();
