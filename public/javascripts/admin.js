@@ -181,46 +181,45 @@ function saveNewMember() {
     }
 }
 
-//TODO add new sessions WORK IN PROGRESS
-function addNewSessions (){
-    var idToEdit = this.getAttribute('data-id');
+//TODO add new sessions to member
+function addNewSessions(e, idToEdit) {
     var member = globalMembers.find(function (member) {
         return member.id == idToEdit;
     })
-    
+
     var firstName = member.firstName;
     var lastName = member.lastName;
     var password = member.password;
     var phone = member.phone;
     var email = member.email;
     var startDate = member.startDate;
-    
+
     var availableSessions = member.availableSessions;
-    availableSessions = parseInt(availableSessions) + 1;
-    
+    availableSessions = parseInt(availableSessions) + e;
+
     var endDate = new Date(member.endDate);
     endDate.setDate(endDate.getDate() + 30);
     endDate = saveDate(endDate);
 
     var actionUrl = API_URL.UPDATE + '?id=' + idToEdit;
 
-        $.post(actionUrl, {
-            firstName, // shortcut from Es6 (key is the same as value variable name)
-            lastName,
-            password,
-            phone: phone, // Es5 loger variant used when key is not the same as value variable name(not the case))
-            email: email,
-            availableSessions,
-            startDate,
-            endDate
+    $.post(actionUrl, {
+        firstName, // shortcut from Es6 (key is the same as value variable name)
+        lastName,
+        password,
+        phone: phone, // Es5 loger variant used when key is not the same as value variable name(not the case))
+        email: email,
+        availableSessions,
+        startDate,
+        endDate
 
-        }).done(function (response) {
-            idToEdit = "";
-            if (response.success) {
-                loadMembers();
-                //TODO close form fadeOut?
-            }
-        })
+    }).done(function (response) {
+        idToEdit = "";
+        if (response.success) {
+            loadMembers();
+            //TODO close form fadeOut?
+        }
+    })
 }
 
 
@@ -259,12 +258,12 @@ function showMemberDetails() {
                         <div class="addSessionsButton fourSessions" data-id="${member.id}">Add 4 sessions</div>
                         <div class="addSessionsButton eightSessions" data-id="${member.id}">Add 8 sessions</div>
                         <div class="addSessionsButton twelveSessions" data-id="${member.id}">Add 12 sessions</div>`
-                        console.log('member is is ' +  member.id + " and id is " + id);
+
 
     var editDel = `<a href="${API_URL.DELETE}?id=${member.id}" title="Delete member" class="edit">&#10006;</a> | 
                     <a href="#" title="Edit member" class="edit" data-id="${member.id}">&#9998;</a>`
 
-    sessionDetails_div.innerHTML = addSessions;                
+    sessionDetails_div.innerHTML = addSessions;
     delEdit_div.innerHTML = editDel;
     lastNameDetails_span.innerHTML = member.lastName;
     firstNameDetails_span.innerHTML = member.firstName;
@@ -280,7 +279,7 @@ function showMemberDetails() {
     endDate = setDisplayDate(endDate);
     endDateDetails_span.innerHTML = endDate;
 
-    
+
 
     $('#main-sidebar').show("slow");
 }
@@ -305,9 +304,31 @@ function initEvents() {
     // member edit 
     $("#main-sidebar").delegate("a.edit", "click", memberEdit);
 
-    $("#main-sidebar").delegate(".oneSession", "click", addNewSessions);
+    // Add 1 session to member
+    $("#main-sidebar").delegate(".oneSession", "click", function () {
+        var idToEdit = this.getAttribute('data-id');
+        addNewSessions(1, idToEdit);
+    });
 
-}
+    // Add 4 sessions to member
+    $("#main-sidebar").delegate(".fourSessions", "click", function () {
+        var idToEdit = this.getAttribute('data-id');
+        addNewSessions(4, idToEdit);
+    });
+
+    // Add 8 sessions to member
+    $("#main-sidebar").delegate(".eightSessions", "click", function () {
+        var idToEdit = this.getAttribute('data-id');
+        addNewSessions(8, idToEdit);
+    });
+
+    // Add 12 sessions to member
+    $("#main-sidebar").delegate(".twelveSessions", "click", function () {
+        var idToEdit = this.getAttribute('data-id');
+        addNewSessions(12, idToEdit);
+    });
+
+}   
 
 $('.sec-modal').hide();
 $('#main-sidebar').hide();
