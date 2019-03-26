@@ -1,6 +1,6 @@
 // TODO!!!
 
-// add sessions
+// add sessions enddate if +1 or former endDate is less than today
 // present
 // rowcount
 //memberphoto
@@ -181,7 +181,7 @@ function saveNewMember() {
     }
 }
 
-//TODO add new sessions to member
+// Add new sessions to member
 function addNewSessions(e, idToEdit) {
     var sessionsSingPlur = e == 1 ? ' session' : ' sessions';
     if(confirm("Add " + e + sessionsSingPlur + " ?")){
@@ -197,7 +197,7 @@ function addNewSessions(e, idToEdit) {
         var startDate = member.startDate;
     
         var availableSessions = member.availableSessions;
-        availableSessions = parseInt(availableSessions) + e;
+        availableSessions = parseInt(availableSessions) + parseInt(e);
     
         var endDate = new Date(member.endDate);
         endDate.setDate(endDate.getDate() + 30);
@@ -239,7 +239,7 @@ function memberEdit() {
     firstName_input.val(member.firstName);
     lastName_input.val(member.lastName);
     password_input.val(member.password);
-    confPassword_input.val(member.confPassword);
+    confPassword_input.val(member.password);
     phone_input.val(member.phone);
     email_input.val(member.email);
     availableSessions_input.val(member.availableSessions);
@@ -257,10 +257,10 @@ function showMemberDetails() {
         return member.id == id;
     })
 
-    var addSessions = `<div class="addSessionsButton oneSession" data-id="${member.id}">Add 1 session</div>
-                        <div class="addSessionsButton fourSessions" data-id="${member.id}">Add 4 sessions</div>
-                        <div class="addSessionsButton eightSessions" data-id="${member.id}">Add 8 sessions</div>
-                        <div class="addSessionsButton twelveSessions" data-id="${member.id}">Add 12 sessions</div>`
+    var addSessions = `<div class="addSessionsButton" name="1" data-id="${member.id}">Add 1 session</div>
+                        <div class="addSessionsButton" name="4" data-id="${member.id}">Add 4 sessions</div>
+                        <div class="addSessionsButton" name="8" data-id="${member.id}">Add 8 sessions</div>
+                        <div class="addSessionsButton" name="12" data-id="${member.id}">Add 12 sessions</div>`
 
 
     var editDel = `<a href="${API_URL.DELETE}?id=${member.id}" title="Delete member" class="edit">&#10006;</a> | 
@@ -308,27 +308,10 @@ function initEvents() {
     $("#main-sidebar").delegate("a.edit", "click", memberEdit);
 
     // Add 1 session to member
-    $("#main-sidebar").delegate(".oneSession", "click", function () {
+    $("#main-sidebar").delegate(".addSessionsButton", "click", function () {
         var idToEdit = this.getAttribute('data-id');
-        addNewSessions(1, idToEdit);
-    });
-
-    // Add 4 sessions to member
-    $("#main-sidebar").delegate(".fourSessions", "click", function () {
-        var idToEdit = this.getAttribute('data-id');
-        addNewSessions(4, idToEdit);
-    });
-
-    // Add 8 sessions to member
-    $("#main-sidebar").delegate(".eightSessions", "click", function () {
-        var idToEdit = this.getAttribute('data-id');
-        addNewSessions(8, idToEdit);
-    });
-
-    // Add 12 sessions to member
-    $("#main-sidebar").delegate(".twelveSessions", "click", function () {
-        var idToEdit = this.getAttribute('data-id');
-        addNewSessions(12, idToEdit);
+        var name = this.getAttribute('name');
+        addNewSessions(name, idToEdit);
     });
 
 }   
