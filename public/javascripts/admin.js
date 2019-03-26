@@ -4,6 +4,7 @@
 // present
 // rowcount
 //memberphoto
+//update and populate members.json for live preview
 
 
 
@@ -32,7 +33,7 @@ var startDateDetails_span = document.getElementById('startDateDetails');
 var endDateDetails_span = document.getElementById('endDateDetails');
 var sessionDetails_div = document.getElementById('sessions');
 
-//TODO update and populate members.json for live preview
+
 var API_URL = {
     CREATE: "members/create",
     READ: "members",
@@ -108,6 +109,18 @@ function displayMembers(members) {
     document.querySelector("tbody").innerHTML = rows.join('')
 }
 
+//search member
+function memberSearch() {
+    var searchMember = this.value.toLowerCase();
+
+    var filteredMembers = globalMembers.filter(function (member) {
+        return member.firstName.toLowerCase().includes(searchMember) ||
+            member.lastName.toLowerCase().includes(searchMember);
+
+    })
+
+    displayMembers(filteredMembers);
+}
 
 
 function openNewMemberForm() {
@@ -168,17 +181,46 @@ function saveNewMember() {
     }
 }
 
-//search member
-function memberSearch() {
-    var searchMember = this.value.toLowerCase();
-
-    var filteredMembers = globalMembers.filter(function (member) {
-        return member.firstName.toLowerCase().includes(searchMember) ||
-            member.lastName.toLowerCase().includes(searchMember);
-
+//TODO add new sessions WORK IN PROGRESS
+function addNewSessions (){
+    var idToEdit = this.getAttribute('data-id');
+    var member = globalMembers.find(function (member) {
+        return member.id == idToEdit;
     })
+    
+    var firstName = member.firstName;
+    var lastName = member.lastName;
+    var password = member.password;
+    var phone = member.phone;
+    var email = member.email;
+    var startDate = member.startDate;
+    
+    var availableSessions = member.availableSessions;
+    availableSessions = parseInt(availableSessions) + 1;
+    
+    var endDate = new Date(member.endDate);
+    endDate.setDate(endDate.getDate() + 30);
+    endDate = saveDate(endDate);
 
-    displayMembers(filteredMembers);
+    var actionUrl = API_URL.UPDATE + '?id=' + idToEdit;
+
+        $.post(actionUrl, {
+            firstName, // shortcut from Es6 (key is the same as value variable name)
+            lastName,
+            password,
+            phone: phone, // Es5 loger variant used when key is not the same as value variable name(not the case))
+            email: email,
+            availableSessions,
+            startDate,
+            endDate
+
+        }).done(function (response) {
+            idToEdit = "";
+            if (response.success) {
+                loadMembers();
+                //TODO close form fadeOut?
+            }
+        })
 }
 
 
@@ -248,37 +290,7 @@ function hideMemberDetails() {
     $('#main-sidebar').hide("slow");
 }
 
-//TODO add new sessions WORK IN PROGRESS
-function addNewSessions (){
-    console.log('click on 1 session');
-    var id = this.getAttribute('data-id');
-    var member = globalMembers.find(function (member) {
-        return member.id == id;
-    })
-  
-    var availableSessions = member.availableSessions;
-    console.log('av sessions ' + availableSessions  + ' member id is ' + member.id);
-    availableSessions = parseInt(availableSessions) + 1;
-    console.log('av sessions ' + availableSessions );
 
-    
-
-        // $.post(API_URL.UPDATE + '?id=' + idToEdit, {
-           
-        //     availableSessions,
-        //     // startDate,
-        //     // // endDate
-
-        // }).done(function (response) {
-        //     idToEdit = "";
-        //     if (response.success) {
-        //         loadMembers();
-                
-        //     }
-        // })
-      
-
-}
 
 function initEvents() {
     //member search
