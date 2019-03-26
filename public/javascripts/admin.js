@@ -183,43 +183,46 @@ function saveNewMember() {
 
 //TODO add new sessions to member
 function addNewSessions(e, idToEdit) {
-    var member = globalMembers.find(function (member) {
-        return member.id == idToEdit;
-    })
-
-    var firstName = member.firstName;
-    var lastName = member.lastName;
-    var password = member.password;
-    var phone = member.phone;
-    var email = member.email;
-    var startDate = member.startDate;
-
-    var availableSessions = member.availableSessions;
-    availableSessions = parseInt(availableSessions) + e;
-
-    var endDate = new Date(member.endDate);
-    endDate.setDate(endDate.getDate() + 30);
-    endDate = saveDate(endDate);
-
-    var actionUrl = API_URL.UPDATE + '?id=' + idToEdit;
-
-    $.post(actionUrl, {
-        firstName, // shortcut from Es6 (key is the same as value variable name)
-        lastName,
-        password,
-        phone: phone, // Es5 loger variant used when key is not the same as value variable name(not the case))
-        email: email,
-        availableSessions,
-        startDate,
-        endDate
-
-    }).done(function (response) {
-        idToEdit = "";
-        if (response.success) {
-            loadMembers();
-            //TODO close form fadeOut?
-        }
-    })
+    var sessionsSingPlur = e == 1 ? ' session' : ' sessions';
+    if(confirm("Add " + e + sessionsSingPlur + " ?")){
+        var member = globalMembers.find(function (member) {
+            return member.id == idToEdit;
+        })
+        
+        var firstName = member.firstName;
+        var lastName = member.lastName;
+        var password = member.password;
+        var phone = member.phone;
+        var email = member.email;
+        var startDate = member.startDate;
+    
+        var availableSessions = member.availableSessions;
+        availableSessions = parseInt(availableSessions) + e;
+    
+        var endDate = new Date(member.endDate);
+        endDate.setDate(endDate.getDate() + 30);
+        endDate = saveDate(endDate);
+    
+        var actionUrl = API_URL.UPDATE + '?id=' + idToEdit;
+    
+        $.post(actionUrl, {
+            firstName, // shortcut from Es6 (key is the same as value variable name)
+            lastName,
+            password,
+            phone: phone, // Es5 loger variant used when key is not the same as value variable name(not the case))
+            email: email,
+            availableSessions,
+            startDate,
+            endDate
+    
+        }).done(function (response) {
+            idToEdit = "";
+            if (response.success) {
+                loadMembers();
+            }
+        })
+    }
+    
 }
 
 
