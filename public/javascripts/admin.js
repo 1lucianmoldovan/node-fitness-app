@@ -1,10 +1,12 @@
 // TODO!!!
 
-// add sessions enddate if +1 or former endDate is less than today
-// present
+// add sessions enddate if +1 or former endDate is less than today, refresh side-bar when addinfg sessions
+// sessions expire if not used in 30 days
+// +1 session if memeber is present
 // rowcount
-//memberphoto
-//update and populate members.json for live preview
+//row color
+// memberphoto
+// update and populate members.json for live preview
 
 
 
@@ -94,11 +96,11 @@ function displayMembers(members) {
         var endDate = new Date(member.endDate);
         endDate = setDisplayDate(endDate);
 
-        var rowsCount = 1;
+        var rowCount = 1;
 
         return `<tr data-id="${member.id}">
         <td id="present_checkbox"><input type="checkbox"></td>
-        <td class="tcell" data-id="${member.id}">${rowsCount}</td>
+        <td class="tcell" data-id="${member.id}">${rowCount}</td>
         <td class="tcell" data-id="${member.id}">${member.lastName}</td>
         <td class="tcell" data-id="${member.id}">${member.firstName}</td>
         <td class="tcell" data-id="${member.id}">${member.availableSessions}</td>
@@ -181,30 +183,30 @@ function saveNewMember() {
     }
 }
 
-// Add new sessions to member
+// Add sessions to member
 function addNewSessions(e, idToEdit) {
     var sessionsSingPlur = e == 1 ? ' session' : ' sessions';
-    if(confirm("Add " + e + sessionsSingPlur + " ?")){
+    if (confirm("Add " + e + sessionsSingPlur + " ?")) {
         var member = globalMembers.find(function (member) {
             return member.id == idToEdit;
         })
-        
+
         var firstName = member.firstName;
         var lastName = member.lastName;
         var password = member.password;
         var phone = member.phone;
         var email = member.email;
-        var startDate = member.startDate;
-    
+        // add sessions
         var availableSessions = member.availableSessions;
         availableSessions = parseInt(availableSessions) + parseInt(e);
-    
-        var endDate = new Date(member.endDate);
-        endDate.setDate(endDate.getDate() + 30);
-        endDate = saveDate(endDate);
-    
+        //add days
+        var startDate = today > member.endDate ? today : member.endDate;
+        var setEndDate = new Date(startDate);
+            setEndDate.setDate(setEndDate.getDate() + 30);
+        var endDate = saveDate(setEndDate);
+
         var actionUrl = API_URL.UPDATE + '?id=' + idToEdit;
-    
+
         $.post(actionUrl, {
             firstName, // shortcut from Es6 (key is the same as value variable name)
             lastName,
@@ -214,15 +216,20 @@ function addNewSessions(e, idToEdit) {
             availableSessions,
             startDate,
             endDate
-    
+
         }).done(function (response) {
             idToEdit = "";
             if (response.success) {
                 loadMembers();
+                availableSessionsDetails_span.innerHTML = availableSessions;
+                startDateDetails_span.innerHTML = setDisplayDate(new Date(startDate));
+                endDateDetails_span.innerHTML = setDisplayDate(new Date(endDate));
+
+
             }
         })
     }
-    
+
 }
 
 
@@ -314,7 +321,7 @@ function initEvents() {
         addNewSessions(name, idToEdit);
     });
 
-}   
+}
 
 $('.sec-modal').hide();
 $('#main-sidebar').hide();
