@@ -201,9 +201,9 @@ function addNewSessions(e, idToEdit) {
         availableSessions = parseInt(availableSessions) + parseInt(e);
         //add days
         var startDate = today > member.endDate ? today : member.endDate;
-        var setEndDate = new Date(startDate);
-            setEndDate.setDate(setEndDate.getDate() + 30);
-        var endDate = saveDate(setEndDate);
+        var endDate = new Date(startDate);
+        endDate.setDate(endDate.getDate() + 30);
+        endDate = saveDate(endDate);
 
         var actionUrl = API_URL.UPDATE + '?id=' + idToEdit;
 
