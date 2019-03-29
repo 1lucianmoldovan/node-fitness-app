@@ -270,7 +270,7 @@ function showMemberDetails() {
                         <div class="addSessionsButton" name="12" data-id="${member.id}">Add 12 sessions</div>`
 
 
-    var editDel = `<a href="${API_URL.DELETE}?id=${member.id}" title="Delete member" class="edit">&#10006;</a> | 
+    var editDel = `<a href="${API_URL.DELETE}?id=${member.id}" title="Delete member" class="edit" ><i class="fa fa-trash"></i></a> | 
                     <a href="#" title="Edit member" class="edit" data-id="${member.id}">&#9998;</a>`
 
     sessionDetails_div.innerHTML = addSessions;
