@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.5
+-- version 4.8.4
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 05, 2019 at 05:02 PM
--- Server version: 10.1.38-MariaDB
--- PHP Version: 7.3.2
+-- Generation Time: Apr 08, 2019 at 10:01 PM
+-- Server version: 10.1.37-MariaDB
+-- PHP Version: 7.3.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -38,20 +38,19 @@ CREATE TABLE `members` (
   `phone` text NOT NULL,
   `email` text NOT NULL,
   `availableSessions` text NOT NULL,
+  `usedSessions` text NOT NULL,
   `startDate` date NOT NULL,
   `endDate` date NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `members`
 --
 
-INSERT INTO `members` (`id`, `username`, `firstName`, `lastName`, `password`, `confPassword`, `phone`, `email`, `availableSessions`, `startDate`, `endDate`) VALUES
-(94, 'undefined', 'Razvan333', 'Crisan', '1234', '1234', '786250563', 'davanitransport@yahoo.ro', '3', '2019-03-05', '2019-04-04'),
-(96, 'undefined', 'Razvan666', 'Crisan', '1234', '1234', '786250563', 'davanitransport@yahoo.ro', '4', '2019-03-05', '2019-04-04'),
-(97, 'undefined', 'Razvan', 'Crisan', '1234', '1234', '786250563', 'davanitransport@yahoo.ro', '3', '2019-03-05', '2019-04-04'),
-(99, 'undefined', 'Razvan', 'Crisan', '1234', '1234', '786250563', 'davanitransport@yahoo.ro', '444', '2019-03-05', '2019-04-04'),
-(100, 'undefined', 'Razvan', 'Crisan', '1234', '1234', '786250563', 'davanitransport@yahoo.ro', '6', '2019-03-05', '2019-04-04');
+INSERT INTO `members` (`id`, `username`, `firstName`, `lastName`, `password`, `confPassword`, `phone`, `email`, `availableSessions`, `usedSessions`, `startDate`, `endDate`) VALUES
+(1, 'undefined', 'Lucian', 'Moldovan', '1234', 'undefined', '0751263552', 'lmoldovan@domain.com', '7', '0', '2019-04-08', '2019-05-08'),
+(2, 'undefined', 'Razvan', 'Crisan', '1234', 'undefined', '0751263552', 'rcrisan@domain.com', '15', '0', '2019-04-08', '2019-05-08'),
+(3, 'undefined', 'Mircea', 'Frandes', '1234', '1234', '0742332112', 'frandesmyrce@gmail.com', '10', '', '2019-04-08', '2019-05-08');
 
 --
 -- Indexes for dumped tables
@@ -61,7 +60,7 @@ INSERT INTO `members` (`id`, `username`, `firstName`, `lastName`, `password`, `c
 -- Indexes for table `members`
 --
 ALTER TABLE `members`
-  ADD UNIQUE KEY `startDate` (`id`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -71,7 +70,7 @@ ALTER TABLE `members`
 -- AUTO_INCREMENT for table `members`
 --
 ALTER TABLE `members`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=101;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
