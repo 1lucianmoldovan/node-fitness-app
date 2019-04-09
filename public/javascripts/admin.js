@@ -4,7 +4,7 @@
 // sessions expire if not used in 30 days
 // +1 session if memeber is present
 // rowcount
-//row color
+// row color
 // memberphoto
 // update and populate members.json for live preview
 
