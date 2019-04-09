@@ -19,13 +19,13 @@
                         <i class="fa fa-search" id="search-btn"></i>
                     </div>
 
-                    <button class="headerButton" id="presentButton">Present</button>
+                    <button class="headerButton" id="presentButton" onclick="presentCheck()">Present</button>
 
                     <button class="headerButton" id="addMemberButton" onclick="openNewMemberForm()">Add member</button>
                 </div>
 
 
-                <table>
+                <table id="tabele1">
                     <thead>
                         <th>P</th>
                         <th>#</th>
@@ -52,6 +52,7 @@
                         <li><strong>Phone: </strong><span id="phoneDetails"></span></li>
                         <li><strong>e-mail: </strong><span id="emailDetails"></span></li>
                         <li><strong>Available sessions: </strong> <span id="availableSessionsDetails"></span></li>
+                        <li><strong>Used sessions: </strong> <span id="usedSessionsDetails"></span></li>
                         <li><strong>Start date: </strong><span id="startDateDetails"></span></li>
                         <li><strong>End date: </strong><span id="endDateDetails"></span></li>
                     </ul>

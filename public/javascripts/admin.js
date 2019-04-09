@@ -35,6 +35,9 @@ var startDateDetails_span = document.getElementById('startDateDetails');
 var endDateDetails_span = document.getElementById('endDateDetails');
 var sessionDetails_div = document.getElementById('sessions');
 
+const usedSessionsDetail = document.getElementById('usedSessionsDetails');
+const presentBtn = document.getElementById('presentButton');
+const checkBox = document.querySelectorAll('.checkMe');
 
 var API_URL = {
     CREATE: "members/create",
@@ -99,7 +102,7 @@ function displayMembers(members) {
         var rowCount = 1;
 
         return `<tr data-id="${member.id}">
-        <td id="present_checkbox"><input type="checkbox"></td>
+        <td id="present_checkbox"><input type="checkbox" class="checkMe" name="checkMe" data-id="${member.id}"></td>
         <td class="tcell" data-id="${member.id}">${rowCount}</td>
         <td class="tcell" data-id="${member.id}">${member.lastName}</td>
         <td class="tcell" data-id="${member.id}">${member.firstName}</td>
@@ -144,6 +147,7 @@ function saveNewMember() {
     var phone = phone_input.val();
     var email = email_input.val();
     var availableSessions = availableSessions_input.val();
+    var usedSessions = 0;
     var startDate = startDate_input.val();
     //set end date
     var endDate = new Date(startDate);
@@ -170,6 +174,7 @@ function saveNewMember() {
             phone: phone, // Es5 loger variant used when key is not the same as value variable name(not the case))
             email: email,
             availableSessions,
+            usedSessions,
             startDate,
             endDate
 
@@ -280,6 +285,7 @@ function showMemberDetails() {
     phoneDetails_span.innerHTML = member.phone;
     emailDetails_span.innerHTML = member.email;
     availableSessionsDetails_span.innerHTML = member.availableSessions;
+    usedSessionsDetail.innerHTML = member.usedSessions;
     //set start date
     var startDate = new Date(member.startDate);
     startDate = setDisplayDate(startDate);
@@ -299,7 +305,61 @@ function hideMemberDetails() {
     $('#main-sidebar').hide("slow");
 }
 
+const grid = document.getElementById("tabele1");
+let checkBoxes = grid.getElementsByTagName("input");
 
+function presentCheck() {
+    console.log('I am alive');
+
+    let boxId = "";
+    for (let i = 0; i < checkBoxes.length; i++) {
+        if (checkBoxes[i].checked) {
+            boxId = checkBoxes[i].getAttribute('data-id');
+            let member = globalMembers.find(function (member) {
+                return member.id == boxId;
+
+            });
+            let usedSessions = member.usedSessions;
+            let firstName = member.firstName;
+            let lastName = member.lastName;
+            let password = member.password;
+            let phone = member.phone;
+            let email = member.email;
+            let availableSessions = member.availableSessions;
+            let startDate = member.startDate;
+            let endDate = member.endDate;
+            let actionUrl = API_URL.UPDATE + '?id=' + boxId;
+            usedSessions++;
+            availableSessions--;
+            $.post(actionUrl, {
+            firstName, // shortcut from Es6 (key is the same as value variable name)
+            lastName,
+            password,
+            phone: phone, // Es5 loger variant used when key is not the same as value variable name(not the case))
+            email: email,
+            availableSessions,
+            startDate,
+            endDate,
+            usedSessions
+
+
+            }).done(function (response) {
+                boxId = "";
+                if (response.success) {
+                    loadMembers();
+                    usedSessionsDetail.innerHTML = member.usedSessions;
+                    console.log("succes");
+
+                }
+            })
+        }
+    }
+
+
+
+
+
+};
 
 function initEvents() {
     //member search

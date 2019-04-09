@@ -35,10 +35,11 @@ router.post('/create', function (req, res, next) {
       var phone = req.body.phone;
       var email = req.body.email;
       var availableSessions = req.body.availableSessions;
+      var usedSessions = req.body.usedSessions;
       var startDate = req.body.startDate;
       var endDate = req.body.endDate;
   
-      const sql = `INSERT INTO members (id, username, firstName, lastName, password, confPassword, phone, email, availableSessions, startDate, endDate) VALUES (NULL, '${username}', '${firstName}', '${lastName}', '${password}', '${confPassword}', '${phone}', '${email}', '${availableSessions}', '${startDate}', '${endDate}')`;
+      const sql = `INSERT INTO members (id, username, firstName, lastName, password, confPassword, phone, email, availableSessions, usedSessions, startDate, endDate) VALUES (NULL, '${username}', '${firstName}', '${lastName}', '${password}', '${confPassword}', '${phone}', '${email}', '${availableSessions}', '${usedSessions}', '${startDate}', '${endDate}')`;
       connection.query(sql, function (err, results) {
         if (err) throw err;
         res.json({ success: true });
@@ -57,12 +58,13 @@ router.post('/update', function(req, res, next) {
     var phone = req.body.phone;
     var email= req.body.email;
     var availableSessions = req.body.availableSessions;
+    var usedSessions = req.body.usedSessions;
     var startDate = req.body.startDate;
     var endDate = req.body.endDate;
   
     pool.getConnection(function(err, connection) {
       if(err) throw err;
-      const sql = `UPDATE members SET username='${username}', firstName='${firstName}', lastName='${lastName}', password='${password}', confPassword='${confPassword}', phone='${phone}', email='${email}', availableSessions='${availableSessions}', startDate='${startDate}', endDate='${endDate}' WHERE id=${id}`;
+      const sql = `UPDATE members SET username='${username}', firstName='${firstName}', lastName='${lastName}', password='${password}', confPassword='${confPassword}', phone='${phone}', email='${email}', availableSessions='${availableSessions}', usedSessions ='${usedSessions}', startDate='${startDate}', endDate='${endDate}' WHERE id=${id}`;
       connection.query(sql, function(err, results) {
         if(err) throw err;
         res.json({success: true});
