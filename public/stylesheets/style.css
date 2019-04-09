@@ -111,20 +111,16 @@ th {
   color: white;
 }
 
-/* tr:nth-child(even){background-color: turquoise}
-
-tr:nth-child(odd){background-color: #f2f2f2 } */
-
 .red {
   background-image: linear-gradient(to top, #ffad99 0%, #ffebe6 100%);
 }
 
 .green {
-  background-image: linear-gradient(to top,#80ff80  0%, #e6ffe6 100%);
+  background-image: linear-gradient(to top,#80ff80  0%, #ffffe6 100%);
 }
 
 .yellow {
-  background-image: linear-gradient(to top, #ffff80 0%, #ffffcc 100%);
+  background-image: linear-gradient(to top, #ffff80 0%, #ffffe6 100%);
 } 
 
 tbody tr:hover {

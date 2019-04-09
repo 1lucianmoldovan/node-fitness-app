@@ -3,10 +3,9 @@
 // add sessions enddate if +1 or former endDate is less than today, refresh side-bar when addinfg sessions
 // sessions expire if not used in 30 days
 // +1 session if memeber is present
-// rowcount
-//row color
 // memberphoto
 // update and populate members.json for live preview
+// row color by enddate
 
 
 
@@ -92,6 +91,7 @@ function displayMembers(members) {
 
         var endDate = new Date(member.endDate);
         endDate = setDisplayDate(endDate);
+        console.log('enddate: ' + endDate +'    ' + member.endDate);
 
         var rowColor = '';
         if(member.availableSessions <= 1){
