@@ -93,7 +93,16 @@ function displayMembers(members) {
         var endDate = new Date(member.endDate);
         endDate = setDisplayDate(endDate);
 
-        return `<tr data-id="${member.id}">
+        var rowColor = '';
+        if(member.availableSessions <= 1){
+            rowColor = "red";
+        }else if(member.availableSessions <= 3){
+            rowColor = "yellow";
+        }else{
+            rowColor = "green"
+        }
+
+        return `<tr data-id="${member.id}" class="${rowColor}">
         <td id="present_checkbox"><input type="checkbox"></td>
         <td class="tcell" data-id="${member.id}"></td>
         <td class="tcell" data-id="${member.id}">${member.lastName}</td>
