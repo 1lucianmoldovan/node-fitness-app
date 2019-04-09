@@ -77,10 +77,21 @@ button {
 table {
   border-collapse: collapse;
   width: 100%;
+  counter-reset: rowNumber;
 }
 
-tbody td:first-of-type {
-  width: 20px;
+tbody td:first-of-type, thead th:first-of-type {
+  width: 1px;
+  padding-left: 8px;
+}
+
+table tbody tr {
+  counter-increment: rowNumber;
+}
+table tr td:nth-of-type(2)::before {
+  content: counter(rowNumber);
+  min-width: 1em;
+  text-align: left;
 }
 
 tbody tr {
@@ -88,13 +99,10 @@ tbody tr {
   border-style: solid none;
 }
 
-thead th:first-of-type {
-  text-align: center;
-}
 
 th, td {
-  text-align: left;
-  padding: 8px;
+  text-align: center;
+  padding: 8px 0px;
 }
 
 th {
@@ -107,35 +115,12 @@ tr:nth-child(even){background-color: turquoise}
 
 tr:nth-child(odd){background-color: #f2f2f2 }
 
-tbody input:hover {
-  cursor: pointer;
-}
-
-
 tbody tr:hover {
   cursor: pointer;
   transform: scaleY(1);
   box-shadow: 0px 0px 3px 1px rgba(0,0,0,0.75);
   transition-duration: 0.1s;
 }
-
-
-/*
-table,
-th,
-td {
-  border: 2px solid black;
-  border-collapse: collapse;
-}
-th,
-td {
-  padding-left: 15px;
-  padding-right: 100px;
-  padding-top: 10px;
-  padding-bottom: 10px;
-}
-
-/* modal section */
 
 .sec-modal {
   width: 100%;

@@ -88,27 +88,22 @@ function displayDate(a) {
 
 //display members table
 function displayMembers(members) {
-
-
-
     var rows = members.map(function (member) {
 
         var endDate = new Date(member.endDate);
         endDate = setDisplayDate(endDate);
 
-        var rowCount = 1;
-
         return `<tr data-id="${member.id}">
         <td id="present_checkbox"><input type="checkbox"></td>
-        <td class="tcell" data-id="${member.id}">${rowCount}</td>
+        <td class="tcell" data-id="${member.id}"></td>
         <td class="tcell" data-id="${member.id}">${member.lastName}</td>
         <td class="tcell" data-id="${member.id}">${member.firstName}</td>
         <td class="tcell" data-id="${member.id}">${member.availableSessions}</td>
         <td class="tcell" data-id="${member.id}">${endDate}</span></td> 
         </tr>`
     })
-
-    document.querySelector("tbody").innerHTML = rows.join('')
+    
+    document.querySelector("tbody").innerHTML = rows.join('');
 }
 
 //search member
@@ -123,7 +118,6 @@ function memberSearch() {
 
     displayMembers(filteredMembers);
 }
-
 
 function openNewMemberForm() {
     startDate_input.val(today);
@@ -232,7 +226,6 @@ function addNewSessions(e, idToEdit) {
 
 }
 
-
 //edit member
 function memberEdit() {
     idToEdit = this.getAttribute('data-id');
@@ -327,3 +320,5 @@ $('.sec-modal').hide();
 $('#main-sidebar').hide();
 initEvents();
 loadMembers();
+
+
