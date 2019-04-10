@@ -243,7 +243,8 @@ tbody tr:hover {
   }
 
 #sessions {
-  margin-top: 70px;
+  margin-top: 170px;
+  text-align: center;
 }
   
 .addSessionsButton {
@@ -253,7 +254,7 @@ tbody tr:hover {
   width: 103px;
   padding: 5px;
   text-align: center;
-  margin: 2px;
+  margin: 15px;
 }
 
 .addSessionsButton:hover {

@@ -197,8 +197,8 @@ function saveNewMember() {
 
 // Add sessions to member
 function addNewSessions(e, idToEdit) {
-    var sessionsSingPlur = e == 1 ? ' session' : ' sessions';
-    if (confirm("Add " + e + sessionsSingPlur + " ?")) {
+    
+    if (confirm("Add " + e + "sessions ?")) {
         var member = globalMembers.find(function (member) {
             return member.id == idToEdit;
         })
@@ -276,8 +276,7 @@ function showMemberDetails() {
         return member.id == id;
     })
 
-    var addSessions = `<div class="addSessionsButton" name="1" data-id="${member.id}">Add 1 session</div>
-                        <div class="addSessionsButton" name="4" data-id="${member.id}">Add 4 sessions</div>
+    var addSessions = `<div class="addSessionsButton" name="4" data-id="${member.id}">Add 4 sessions</div>
                         <div class="addSessionsButton" name="8" data-id="${member.id}">Add 8 sessions</div>
                         <div class="addSessionsButton" name="12" data-id="${member.id}">Add 12 sessions</div>`
 
