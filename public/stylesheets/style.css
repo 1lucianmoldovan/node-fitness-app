@@ -2,9 +2,11 @@ body {
   margin: 0px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
-html{
-  padding: 0px; 
+
+html {
+  padding: 0px;
 }
+
 .container {
   margin: 50px;
 }
@@ -17,7 +19,7 @@ button {
   margin-bottom: 25px;
 }
 
-#comparePasswords{
+#comparePasswords {
   color: red;
 }
 
@@ -52,14 +54,13 @@ button {
 }
 
 #search-btn {
-  color:  #2f3640;
+  color: #2f3640;
   float: right;
   width: 15px;
   height: 15px;
   border-radius: 50%;
   background: white;
   padding: 3px;
-  
 }
 
 .search-txt {
@@ -88,6 +89,7 @@ tbody td:first-of-type, thead th:first-of-type {
 table tbody tr {
   counter-increment: rowNumber;
 }
+
 table tr td:nth-of-type(2)::before {
   content: counter(rowNumber);
   min-width: 1em;
@@ -98,7 +100,6 @@ tbody tr {
   border: 1px solid #aaaaaa;
   border-style: solid none;
 }
-
 
 th, td {
   text-align: center;
@@ -116,17 +117,17 @@ th {
 }
 
 .green {
-  background-image: linear-gradient(to top,#80ff80  0%, #ffffe6 100%);
+  background-image: linear-gradient(to top, #80ff80 0%, #ffffe6 100%);
 }
 
 .yellow {
   background-image: linear-gradient(to top, #ffff80 0%, #ffffe6 100%);
-} 
+}
 
 tbody tr:hover {
   cursor: pointer;
   transform: scaleY(1);
-  box-shadow: 0px 0px 4px 1px rgba(0,0,0,0.75);
+  box-shadow: 0px 0px 4px 1px rgba(0, 0, 0, 0.75);
   transition-duration: 0.1s;
 }
 
@@ -140,6 +141,7 @@ tbody tr:hover {
   justify-content: center;
   align-items: center;
 }
+
 .modal-content {
   width: 400px;
   position: absolute;
@@ -152,30 +154,33 @@ tbody tr:hover {
   text-align: center;
   padding: 20px;
 }
-.modalInputs{
+
+.modalInputs {
   display: flex;
-  justify-content:space-between;
+  justify-content: space-between;
 }
-.modalBox{
+
+.modalBox {
   color: black;
- background: #7af4fd;
- margin: 0 20px 20px 0;
- border: none;
- border-radius: 30px;
- width: 150px;
- height: 29px;
- outline: none;
- padding-left: 10px;
+  background: #7af4fd;
+  margin: 0 20px 20px 0;
+  border: none;
+  border-radius: 30px;
+  width: 150px;
+  height: 29px;
+  outline: none;
+  padding-left: 10px;
 }
+
 #submitBtn {
- color: white;
- background: #2f3640;
- margin: 0 20px 20px 0;
- border: none;
- border-radius: 30px;
- width: 150px;
- height: 29px;
- outline: none;
+  color: white;
+  background: #2f3640;
+  margin: 0 20px 20px 0;
+  border: none;
+  border-radius: 30px;
+  width: 150px;
+  height: 29px;
+  outline: none;
 }
 
 .close {
@@ -186,67 +191,74 @@ tbody tr:hover {
   transform: rotate(45deg);
   cursor: pointer;
 }
- .close:hover {
+
+.close:hover {
   transform: rotate(135deg);
   transition-duration: .3s;
- }
-
+}
 
 .edit {
   color: black;
   text-decoration: none;
 }
 
-.page-wrap {    
-    display: flex;             
-   }
+.page-wrap {
+  display: flex;
+}
 
 .main-content {
-    width: 70%;
-    flex: 1;
-  }
-#main-sidebar {   
-  position: relative;     
-    width: 500px;
-    height: 500px;
-    padding: 15px;
-    border-radius: 10px;
-    background-image: linear-gradient(120deg, #a1c4fd 0%, #c2e9fb 100%);
-    margin: 5px;                
-  }
+  width: 70%;
+  flex: 1;
+}
+
+#main-sidebar {
+  position: relative;
+  width: 500px;
+  height: 500px;
+  padding: 15px;
+  border-radius: 10px;
+  background-image: linear-gradient(120deg, #a1c4fd 0%, #c2e9fb 100%);
+  margin: 5px;
+}
 
 #main-sidebar h2 {
-    text-align: center;
-    margin-bottom: 50px;
-    
-  }
-
-  
+  text-align: center;
+  margin-bottom: 35px;
+  margin-top: 50px;
+}
 
 #member-foto {
-    display: inline-block;
-  }
+  display: inline-block;
+  width: 160px;
+  height: 190px;
+  border: 2px solid red;
+  border-radius: 5px;
+  margin: 25px 0 0 30px;
+}
 
-#member-foto div {
-    width: 150px;
-    height: 150px;
-    border: 2px solid red;
-  }
-  
 #member-details {
-    float: right;
-    border:2px solid grey;
-  }
+  display: inline-block;
+}
 
-  #member-details ul{
-    list-style-type: none;
-  }
+#member-details ul {
+  list-style-type: none;
+}
+
+#delEdit {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+}
+
+.edit {
+  font-size: 1.5em;
+}
 
 #sessions {
-  margin-top: 170px;
+  margin-top: 25px;
   text-align: center;
 }
-  
+
 .addSessionsButton {
   display: inline-block;
   border: 2px solid black;
@@ -263,9 +275,3 @@ tbody tr:hover {
   color: white;
   transition-duration: .2s;
 }
-
-#delEdit {
-  position: absolute;
-  bottom: 20px;
-  right: 20px;
-}  
