@@ -180,6 +180,14 @@ function saveNewMember() {
         alert("The passwords don't match!");
         confPassword_input.focus();
         return false;
+    }else if(phone == ""){
+        alert("Please provide phone number");
+        phone_input.focus();
+        return false;
+    }else if(email == ""){
+        alert("Please provide email");
+        email_input.focus();
+        return false;
     }else if(availableSessions < 0 || availableSessions == ""){
         alert("Please provide available sessions");
         availableSessions_input.focus();
