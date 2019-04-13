@@ -332,7 +332,8 @@ const presentCheck = () => {
             availableSessions--;
             if (availableSessions < 0) {
                 usedSessions--;
-                console.warn(`User id ${member.id}, ${member.lastName} ${member.firstName} has no sessions left, no changes ware made`);
+                alert(`User id ${member.id}, ${member.lastName} ${member.firstName} has no sessions left, no changes ware made.`);
+                console.warn(`User id ${member.id}, ${member.lastName} ${member.firstName} has no sessions left, no changes ware made.`);
             } else {
                 $.post(actionUrl, {
                     firstName, // shortcut from Es6 (key is the same as value variable name)
