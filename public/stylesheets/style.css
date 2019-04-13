@@ -107,7 +107,7 @@ th, td {
 }
 
 th {
-  cursor: default;
+  cursor: pointer;
   background-color: #00aeef;
   color: white;
 }

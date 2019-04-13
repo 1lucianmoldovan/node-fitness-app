@@ -1,5 +1,7 @@
 // Global Variables
 var idToEdit = "";
+var monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+
 const globalVarStuf = {
     firstName_input: $('input[name=firstName]'),
     lastName_input: $('input[name=lastName]'),
@@ -19,7 +21,7 @@ const globalVarStuf = {
     usedSessionsDetail: document.getElementById('usedSessionsDetails')
 }
 
-//caching DOM elements
+
 var API_URL = {
     CREATE: "members/create",
     READ: "members",
@@ -55,7 +57,7 @@ function saveDate(date) {
 function setDisplayDate(date) {
     var year = date.getFullYear();
     var monthNr = date.getMonth();
-    var monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+
     var month = monthNames[monthNr];
     var day = date.getDate();
     var showDate = `${displayDate(day)} - ${month} - ${year}`;
@@ -125,7 +127,7 @@ function saveNewMember() {
     var availableSessions = globalVarStuf.availableSessions_input.val();
     let usedSessions = globalVarStuf.usedSessions_input.val();
     var startDate = globalVarStuf.startDate_input.val();
- 
+
     //set end date
     var endDate = new Date(startDate);
     endDate.setDate(endDate.getDate() + 30);
@@ -325,7 +327,7 @@ const presentCheck = () => {
             let availableSessions = member.availableSessions;
             let startDate = new Date(member.startDate);
             startDate = saveDate(startDate);
-            let endDate = new Date(member.endDate); 
+            let endDate = new Date(member.endDate);
             endDate = saveDate(endDate);
             let actionUrl = API_URL.UPDATE + '?id=' + boxId;
             usedSessions++;
@@ -349,7 +351,7 @@ const presentCheck = () => {
                     boxId = "";
                     if (response.success) {
                         loadMembers();
-                       console.log(`Sessions successfuly changed to user id ${member.id}, ${member.lastName} ${member.firstName} `);
+                        console.log(`Sessions successfuly changed to user id ${member.id}, ${member.lastName} ${member.firstName} `);
                     };
                 });
             };
@@ -358,41 +360,74 @@ const presentCheck = () => {
 };
 
 function sortTable(n) {
-    var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
+
+    let table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
     table = document.getElementById("tabele1");
     switching = true;
-    dir = "asc"; 
+    dir = "asc";
     while (switching) {
-      switching = false;
-      rows = table.rows;
-      for (i = 1; i < (rows.length - 1); i++) {
-        shouldSwitch = false;
-        x = rows[i].getElementsByTagName("TD")[n];
-        y = rows[i + 1].getElementsByTagName("TD")[n];
-        if (dir == "asc") {
-          if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
-            shouldSwitch= true;
-            break;
-          }
-        } else if (dir == "desc") {
-          if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
-            shouldSwitch = true;
-            break;
-          }
+        switching = false;
+        rows = table.rows;
+        for (i = 1; i < (rows.length - 1); i++) {
+            shouldSwitch = false;
+            x = rows[i].getElementsByTagName("TD")[n];
+            y = rows[i + 1].getElementsByTagName("TD")[n];
+
+            if (n == 5) {
+                let yearX = x.innerHTML.substring(x.innerHTML.length - 4, x.innerHTML.length);
+                let dateX = x.innerHTML.substring(0, 2);
+                let monthX = x.innerHTML.substring(dateX.length + 3, x.innerHTML.length - 7);
+                monthX = monthNames.indexOf(monthX);
+                monthX = monthX < 10 ? "0" + monthX : monthX;
+                x = yearX + monthX + dateX;
+
+                let yearY = y.innerHTML.substring(y.innerHTML.length - 4, y.innerHTML.length);
+                let dateY = y.innerHTML.substring(0, 2);
+                let monthY = y.innerHTML.substring(dateY.length + 3, y.innerHTML.length - 7);
+                monthY = monthNames.indexOf(monthY);
+                monthY = monthY < 10 ? "0" + monthY : monthY;
+                y = yearY + monthY + dateY;
+
+                if (dir == "asc") {
+                    if (x > y) {
+                        shouldSwitch = true;
+                        break;
+                    }
+                } else if (dir == "desc") {
+                    if (x < y) {
+                        shouldSwitch = true;
+                        break;
+                    }
+                }
+            } else {
+                if (dir == "asc") {
+                    if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+                        shouldSwitch = true;
+                        break;
+                    }
+                } else if (dir == "desc") {
+                    if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
+                        shouldSwitch = true;
+                        break;
+                    }
+                }
+            }
+
         }
-      }
-      if (shouldSwitch) {
-        rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
-        switching = true;
-        switchcount ++;      
-      } else {
-        if (switchcount == 0 && dir == "asc") {
-          dir = "desc";
-          switching = true;
+        if (shouldSwitch) {
+            rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+            switching = true;
+            switchcount++;
+        } else {
+            if (switchcount == 0 && dir == "asc") {
+                dir = "desc";
+                switching = true;
+            }
         }
-      }
     }
-  }
+}
+
+
 
 function initEvents() {
     //member search
