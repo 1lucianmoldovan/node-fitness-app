@@ -1,21 +1,5 @@
-// TODO!!!
-
-// add sessions enddate if +1 or former endDate is less than today, refresh side-bar when addinfg sessions
-// sessions expire if not used in 30 days
-// +1 session if memeber is present
-// rowcount
-// row color
-// memberphoto
-// update and populate members.json for live preview
-
-
-
-
-
-
+// Global Variables
 var idToEdit = "";
-
-//caching DOM elements
 const globalVarStuf = {
     firstName_input: $('input[name=firstName]'),
     lastName_input: $('input[name=lastName]'),
@@ -32,16 +16,10 @@ const globalVarStuf = {
     availableSessionsDetails_span: document.getElementById('availableSessionsDetails'),
     startDateDetails_span: document.getElementById('startDateDetails'),
     endDateDetails_span: document.getElementById('endDateDetails'),
+    usedSessionsDetail: document.getElementById('usedSessionsDetails')
 }
 
-
-
-
-const usedSessionsDetail = document.getElementById('usedSessionsDetails');
-const presentBtn = document.getElementById('presentButton');
-const checkBox = document.querySelectorAll('.checkMe');
-
-
+//caching DOM elements
 var API_URL = {
     CREATE: "members/create",
     READ: "members",
@@ -55,10 +33,8 @@ if (location.host === "1lucianmoldovan.github.io") {
 
 function loadMembers() {
     $.ajax(API_URL.READ).done(function (members) {
-
         window.globalMembers = members;
         displayMembers(members);
-
     })
 }
 
@@ -94,13 +70,9 @@ function displayDate(a) {
 
 //display members table
 function displayMembers(members) {
-
-
     var rows = members.map(function (member) {
-
         var endDate = new Date(member.endDate);
         endDate = setDisplayDate(endDate);
-
         var rowColor = '';
         if (member.availableSessions < 1) {
             rowColor = "red";
@@ -109,7 +81,6 @@ function displayMembers(members) {
         } else {
             rowColor = "green"
         }
-
         return `<tr data-id="${member.id}" class="${rowColor}">
         <td id="present_checkbox"><input type="checkbox" class="checkMe" name="checkMe" data-id="${member.id}"></td>
         <td class="tcell" data-id="${member.id}"></td>
@@ -118,25 +89,21 @@ function displayMembers(members) {
         <td class="tcell" data-id="${member.id}">${member.availableSessions}</td>
         <td class="tcell" data-id="${member.id}">${endDate}</span></td> 
         </tr>`
-    })
-
-    document.querySelector("tbody").innerHTML = rows.join('')
+    });
+    document.querySelector("tbody").innerHTML = rows.join('');
 }
 
-//search member
+//search Funtionality
 function memberSearch() {
     var searchMember = this.value.toLowerCase();
-
     var filteredMembers = globalMembers.filter(function (member) {
         return member.firstName.toLowerCase().includes(searchMember) ||
             member.lastName.toLowerCase().includes(searchMember);
-
     })
-
     displayMembers(filteredMembers);
 }
 
-
+//Open and close Form
 function openNewMemberForm() {
     globalVarStuf.startDate_input.val(today);
     $('#modal1').fadeIn();
@@ -158,6 +125,7 @@ function saveNewMember() {
     var availableSessions = globalVarStuf.availableSessions_input.val();
     let usedSessions = globalVarStuf.usedSessions_input.val();
     var startDate = globalVarStuf.startDate_input.val();
+ 
     //set end date
     var endDate = new Date(startDate);
     endDate.setDate(endDate.getDate() + 30);
@@ -197,7 +165,6 @@ function saveNewMember() {
     }
     else {
         var actionUrl = idToEdit ? API_URL.UPDATE + '?id=' + idToEdit : API_URL.CREATE;
-
         $.post(actionUrl, {
             firstName, // shortcut from Es6 (key is the same as value variable name)
             lastName,
@@ -209,7 +176,6 @@ function saveNewMember() {
             usedSessions,
             startDate,
             endDate
-
         }).done(function (response) {
             idToEdit = "";
             if (response.success) {
@@ -222,12 +188,10 @@ function saveNewMember() {
 
 // Add sessions to member
 function addNewSessions(e, idToEdit) {
-
     if (confirm("Add " + e + " sessions ?")) {
         var member = globalMembers.find(function (member) {
             return member.id == idToEdit;
         })
-
         var firstName = member.firstName;
         var lastName = member.lastName;
         var password = member.password;
@@ -242,9 +206,8 @@ function addNewSessions(e, idToEdit) {
         var endDate = new Date(startDate);
         endDate.setDate(endDate.getDate() + 30);
         endDate = saveDate(endDate);
-
+        //posting changes 
         var actionUrl = API_URL.UPDATE + '?id=' + idToEdit;
-
         $.post(actionUrl, {
             firstName, // shortcut from Es6 (key is the same as value variable name)
             lastName,
@@ -255,7 +218,6 @@ function addNewSessions(e, idToEdit) {
             usedSessions,
             startDate,
             endDate
-
         }).done(function (response) {
             idToEdit = "";
             if (response.success) {
@@ -263,25 +225,18 @@ function addNewSessions(e, idToEdit) {
                 globalVarStuf.availableSessionsDetails_span.innerHTML = availableSessions;
                 globalVarStuf.startDateDetails_span.innerHTML = setDisplayDate(new Date(startDate));
                 globalVarStuf.endDateDetails_span.innerHTML = setDisplayDate(new Date(endDate));
-
-
             }
         })
     }
-
 }
-
 
 //edit member
 function memberEdit() {
     idToEdit = this.getAttribute('data-id');
-
     var member = globalMembers.find(function (member) {
         return member.id == idToEdit;
-
     });
     openNewMemberForm();
-
     globalVarStuf.firstName_input.val(member.firstName);
     globalVarStuf.lastName_input.val(member.lastName);
     globalVarStuf.password_input.val(member.password);
@@ -294,7 +249,6 @@ function memberEdit() {
     globalVarStuf.startDate_input.val(startDate);
     globalVarStuf.usedSessions_input.val(member.usedSessions);
 }
-
 
 //show member details in main side-bar
 function showMemberDetails() {
@@ -310,7 +264,6 @@ function showMemberDetails() {
                         <div class="addSessionsButton" name="8" data-id="${member.id}">Add 8 sessions</div>
                         <div class="addSessionsButton" name="12" data-id="${member.id}">Add 12 sessions</div>`
 
-
     var editDel = `<a href="${API_URL.DELETE}?id=${member.id}" title="Delete member" class="edit" ><i class="fa fa-trash"></i></a> | 
                     <a href="#" title="Edit member" class="edit" data-id="${member.id}">&#9998;</a>`
 
@@ -321,11 +274,13 @@ function showMemberDetails() {
     phoneDetails_span.innerHTML = member.phone;
     emailDetails_span.innerHTML = member.email;
     globalVarStuf.availableSessionsDetails_span.innerHTML = member.availableSessions;
-    usedSessionsDetail.innerHTML = member.usedSessions;
+    globalVarStuf.usedSessionsDetail.innerHTML = member.usedSessions;
+
     //set start date
     var startDate = new Date(member.startDate);
     startDate = setDisplayDate(startDate);
     globalVarStuf.startDateDetails_span.innerHTML = startDate;
+
     //set end date
     var endDate = new Date(member.endDate);
     endDate = setDisplayDate(endDate);
@@ -335,7 +290,6 @@ function showMemberDetails() {
     var email = member.email;
     var gravatar_image_url = get_gravatar_image_url(email, 175);
     $('#image').attr('src', gravatar_image_url);
-
     $('#main-sidebar').show("slow");
 }
 
@@ -351,19 +305,16 @@ function hideMemberDetails() {
     $('#main-sidebar').hide("slow");
 }
 
-const grid = document.getElementById("tabele1");
-let checkBoxes = grid.getElementsByTagName("input");
-
-function presentCheck() {
-    console.log('I am alive');
-
+// Presention check
+const presentCheck = () => {
+    const grid = document.getElementById("tabele1");
     let boxId = "";
+    let checkBoxes = grid.getElementsByTagName("input");
     for (let i = 0; i < checkBoxes.length; i++) {
         if (checkBoxes[i].checked) {
             boxId = checkBoxes[i].getAttribute('data-id');
             let member = globalMembers.find(function (member) {
                 return member.id == boxId;
-
             });
             let usedSessions = member.usedSessions;
             let firstName = member.firstName;
@@ -378,36 +329,31 @@ function presentCheck() {
             usedSessions++;
             availableSessions--;
             if (availableSessions < 0) {
-                availableSessions = 0;
-            }
-            $.post(actionUrl, {
-                firstName, // shortcut from Es6 (key is the same as value variable name)
-                lastName,
-                password,
-                phone: phone, // Es5 loger variant used when key is not the same as value variable name(not the case))
-                email: email,
-                availableSessions,
-                startDate,
-                endDate,
-                usedSessions
-
-
-            }).done(function (response) {
-                boxId = "";
-                if (response.success) {
-                    loadMembers();
-                    usedSessionsDetail.innerHTML = member.usedSessions;
-                    console.log("succes to present");
-                };
-            });
+                usedSessions--;
+                console.warn(`User id ${member.id}, ${member.lastName} ${member.firstName} has no sessions left, no changes ware made`);
+            } else {
+                $.post(actionUrl, {
+                    firstName, // shortcut from Es6 (key is the same as value variable name)
+                    lastName,
+                    password,
+                    phone: phone, // Es5 loger variant used when key is not the same as value variable name(not the case))
+                    email: email,
+                    availableSessions,
+                    startDate,
+                    endDate,
+                    usedSessions
+                }).done(function (response) {
+                    boxId = "";
+                    if (response.success) {
+                        loadMembers();
+                        globalVarStuf.usedSessionsDetail.innerHTML = member.usedSessions;
+                        globalVarStuf.usedSessionsDetail.innerHTML.reload;
+                        console.log(`Sessions successfuly changed to user id ${member.id}, ${member.lastName} ${member.firstName} `);
+                    };
+                });
+            };
         };
-
     };
-
-
-
-
-
 };
 
 function initEvents() {
@@ -429,8 +375,7 @@ function initEvents() {
         var name = this.getAttribute('name');
         addNewSessions(name, idToEdit);
     });
-
-}
+};
 
 $('.sec-modal').hide();
 $('#main-sidebar').hide();
