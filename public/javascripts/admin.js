@@ -313,7 +313,7 @@ const presentCheck = () => {
     for (let i = 0; i < checkBoxes.length; i++) {
         if (checkBoxes[i].checked) {
             boxId = checkBoxes[i].getAttribute('data-id');
-            let member = globalMembers.find(function (member) {
+            let member = globalMembers.find(member => {
                 return member.id == boxId;
             });
             let usedSessions = member.usedSessions;
@@ -323,8 +323,10 @@ const presentCheck = () => {
             let phone = member.phone;
             let email = member.email;
             let availableSessions = member.availableSessions;
-            let startDate = member.startDate;
-            let endDate = member.endDate;
+            let startDate = new Date(member.startDate);
+            startDate = saveDate(startDate);
+            let endDate = new Date(member.endDate); 
+            endDate = saveDate(endDate);
             let actionUrl = API_URL.UPDATE + '?id=' + boxId;
             usedSessions++;
             availableSessions--;
@@ -346,9 +348,7 @@ const presentCheck = () => {
                     boxId = "";
                     if (response.success) {
                         loadMembers();
-                        globalVarStuf.usedSessionsDetail.innerHTML = member.usedSessions;
-                        globalVarStuf.usedSessionsDetail.innerHTML.reload;
-                        console.log(`Sessions successfuly changed to user id ${member.id}, ${member.lastName} ${member.firstName} `);
+                       console.log(`Sessions successfuly changed to user id ${member.id}, ${member.lastName} ${member.firstName} `);
                     };
                 });
             };
