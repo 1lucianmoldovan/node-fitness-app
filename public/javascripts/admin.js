@@ -16,28 +16,31 @@
 var idToEdit = "";
 
 //caching DOM elements
-var firstName_input = $('input[name=firstName]');
-var lastName_input = $('input[name=lastName]');
-var password_input = $('input[name=password]');
-var confPassword_input = $('input[name=confPassword]');
-var phone_input = $('input[name=phone]');
-var email_input = $('input[name=email]');
-var availableSessions_input = $('input[name=availableSessions]');
-var startDate_input = $('input[name=startDate]');
-var delEdit_div = document.querySelector('#delEdit');
-var lastNameDetails_span = document.getElementById('lastNameDetails');
-var firstNameDetails_span = document.getElementById('firstNameDetails');
+const globalVarStuf = {
+    firstName_input: $('input[name=firstName]'),
+    lastName_input: $('input[name=lastName]'),
+    password_input: $('input[name=password]'),
+    confPassword_input: $('input[name=confPassword]'),
+    phone_input: $('input[name=phone]'),
+    email_input: $('input[name=email]'),
+    availableSessions_input: $('input[name=availableSessions]'),
+    usedSessions_input: $('input[name=usedSessions]'),
+    startDate_input: $('input[name=startDate]'),
+    delEdit_div: document.querySelector('#delEdit'),
+    lastNameDetails_span: document.getElementById('lastNameDetails'),
+    firstNameDetails_span: document.getElementById('firstNameDetails'),
+    availableSessionsDetails_span: document.getElementById('availableSessionsDetails'),
+    startDateDetails_span: document.getElementById('startDateDetails'),
+    endDateDetails_span: document.getElementById('endDateDetails'),
+}
 
-var phoneDetails_span = document.getElementById('phoneDetails');
-var emailDetails_span = document.getElementById('emailDetails');
-var availableSessionsDetails_span = document.getElementById('availableSessionsDetails');
-var startDateDetails_span = document.getElementById('startDateDetails');
-var endDateDetails_span = document.getElementById('endDateDetails');
-var sessionDetails_div = document.getElementById('sessions');
+
+
 
 const usedSessionsDetail = document.getElementById('usedSessionsDetails');
 const presentBtn = document.getElementById('presentButton');
 const checkBox = document.querySelectorAll('.checkMe');
+
 
 var API_URL = {
     CREATE: "members/create",
@@ -93,7 +96,6 @@ function displayDate(a) {
 function displayMembers(members) {
 
 
-
     var rows = members.map(function (member) {
 
         var endDate = new Date(member.endDate);
@@ -136,7 +138,7 @@ function memberSearch() {
 
 
 function openNewMemberForm() {
-    startDate_input.val(today);
+    globalVarStuf.startDate_input.val(today);
     $('#modal1').fadeIn();
 }
 function closeNewMemberForm() {
@@ -147,50 +149,50 @@ function closeNewMemberForm() {
 
 //save member in db
 function saveNewMember() {
-    var firstName = firstName_input.val();
-    var lastName = lastName_input.val();
-    var password = password_input.val();
-    var confPassword = confPassword_input.val();
-    var phone = phone_input.val();
-    var email = email_input.val();
-    var availableSessions = availableSessions_input.val();
-    var usedSessions = 0;
-    var startDate = startDate_input.val();
+    var firstName = globalVarStuf.firstName_input.val();
+    var lastName = globalVarStuf.lastName_input.val();
+    var password = globalVarStuf.password_input.val();
+    var confPassword = globalVarStuf.confPassword_input.val();
+    var phone = globalVarStuf.phone_input.val();
+    var email = globalVarStuf.email_input.val();
+    var availableSessions = globalVarStuf.availableSessions_input.val();
+    let usedSessions = globalVarStuf.usedSessions_input.val();
+    var startDate = globalVarStuf.startDate_input.val();
     //set end date
     var endDate = new Date(startDate);
     endDate.setDate(endDate.getDate() + 30);
     endDate = saveDate(endDate);
 
     //member input validation
-    if(firstName == "") {
+    if (firstName == "") {
         alert("Please provide First Name");
-        firstName_input.focus();
+        globalVarStuf.firstName_input.focus();
         return false;
     } else if (lastName == "") {
         alert("Please provide Last Name");
-        lastName_input.focus();
+        globalVarStuf.lastName_input.focus();
         return false;
     }
     else if (password.length < 4) {
         alert("The password must have at least 4 digits!");
-        password_input.focus();
+        globalVarStuf.password_input.focus();
         return false;
     }
     else if (password != confPassword) {
         alert("The passwords don't match!");
-        confPassword_input.focus();
+        globalVarStuf.confPassword_input.focus();
         return false;
-    }else if(phone == ""){
+    } else if (phone == "") {
         alert("Please provide phone number");
-        phone_input.focus();
+        globalVarStuf.phone_input.focus();
         return false;
-    }else if(email == ""){
+    } else if (email == "") {
         alert("Please provide email");
-        email_input.focus();
+        globalVarStuf.email_input.focus();
         return false;
-    }else if(availableSessions < 0 || availableSessions == ""){
+    } else if (availableSessions < 0 || availableSessions == "") {
         alert("Please provide available sessions");
-        availableSessions_input.focus();
+        globalVarStuf.availableSessions_input.focus();
         return false;
     }
     else {
@@ -221,7 +223,7 @@ function saveNewMember() {
 // Add sessions to member
 function addNewSessions(e, idToEdit) {
 
-    if (confirm("Add " + e + "sessions ?")) {
+    if (confirm("Add " + e + " sessions ?")) {
         var member = globalMembers.find(function (member) {
             return member.id == idToEdit;
         })
@@ -231,6 +233,7 @@ function addNewSessions(e, idToEdit) {
         var password = member.password;
         var phone = member.phone;
         var email = member.email;
+        var usedSessions = member.usedSessions;
         // add sessions
         var availableSessions = member.availableSessions;
         availableSessions = parseInt(availableSessions) + parseInt(e);
@@ -249,6 +252,7 @@ function addNewSessions(e, idToEdit) {
             phone: phone, // Es5 loger variant used when key is not the same as value variable name(not the case))
             email: email,
             availableSessions,
+            usedSessions,
             startDate,
             endDate
 
@@ -256,9 +260,9 @@ function addNewSessions(e, idToEdit) {
             idToEdit = "";
             if (response.success) {
                 loadMembers();
-                availableSessionsDetails_span.innerHTML = availableSessions;
-                startDateDetails_span.innerHTML = setDisplayDate(new Date(startDate));
-                endDateDetails_span.innerHTML = setDisplayDate(new Date(endDate));
+                globalVarStuf.availableSessionsDetails_span.innerHTML = availableSessions;
+                globalVarStuf.startDateDetails_span.innerHTML = setDisplayDate(new Date(startDate));
+                globalVarStuf.endDateDetails_span.innerHTML = setDisplayDate(new Date(endDate));
 
 
             }
@@ -278,23 +282,26 @@ function memberEdit() {
     });
     openNewMemberForm();
 
-    firstName_input.val(member.firstName);
-    lastName_input.val(member.lastName);
-    password_input.val(member.password);
-    confPassword_input.val(member.password);
-    phone_input.val(member.phone);
-    email_input.val(member.email);
-    availableSessions_input.val(member.availableSessions);
+    globalVarStuf.firstName_input.val(member.firstName);
+    globalVarStuf.lastName_input.val(member.lastName);
+    globalVarStuf.password_input.val(member.password);
+    globalVarStuf.confPassword_input.val(member.password);
+    globalVarStuf.phone_input.val(member.phone);
+    globalVarStuf.email_input.val(member.email);
+    globalVarStuf.availableSessions_input.val(member.availableSessions);
     var startDate = new Date(member.startDate);
     startDate = saveDate(startDate);
-    startDate_input.val(startDate);
+    globalVarStuf.startDate_input.val(startDate);
+    globalVarStuf.usedSessions_input.val(member.usedSessions);
 }
 
 
 //show member details in main side-bar
 function showMemberDetails() {
-    var id = this.getAttribute('data-id');
-
+    const id = this.getAttribute('data-id');
+    const phoneDetails_span = document.getElementById('phoneDetails');
+    const emailDetails_span = document.getElementById('emailDetails');
+    const sessionDetails_div = document.getElementById('sessions');
     var member = globalMembers.find(function (member) {
         return member.id == id;
     })
@@ -308,21 +315,21 @@ function showMemberDetails() {
                     <a href="#" title="Edit member" class="edit" data-id="${member.id}">&#9998;</a>`
 
     sessionDetails_div.innerHTML = addSessions;
-    delEdit_div.innerHTML = editDel;
-    lastNameDetails_span.innerHTML = member.lastName;
-    firstNameDetails_span.innerHTML = member.firstName;
+    globalVarStuf.delEdit_div.innerHTML = editDel;
+    globalVarStuf.lastNameDetails_span.innerHTML = member.lastName;
+    globalVarStuf.firstNameDetails_span.innerHTML = member.firstName;
     phoneDetails_span.innerHTML = member.phone;
     emailDetails_span.innerHTML = member.email;
-    availableSessionsDetails_span.innerHTML = member.availableSessions;
+    globalVarStuf.availableSessionsDetails_span.innerHTML = member.availableSessions;
     usedSessionsDetail.innerHTML = member.usedSessions;
     //set start date
     var startDate = new Date(member.startDate);
     startDate = setDisplayDate(startDate);
-    startDateDetails_span.innerHTML = startDate;
+    globalVarStuf.startDateDetails_span.innerHTML = startDate;
     //set end date
     var endDate = new Date(member.endDate);
     endDate = setDisplayDate(endDate);
-    endDateDetails_span.innerHTML = endDate;
+    globalVarStuf.endDateDetails_span.innerHTML = endDate;
 
     //gravatar picture
     var email = member.email;
@@ -390,12 +397,12 @@ function presentCheck() {
                 if (response.success) {
                     loadMembers();
                     usedSessionsDetail.innerHTML = member.usedSessions;
-                    console.log("succes");
+                    console.log("succes to present");
+                };
+            });
+        };
 
-                }
-            })
-        }
-    }
+    };
 
 
 
