@@ -19,9 +19,6 @@ button {
   margin-bottom: 25px;
 }
 
-#comparePasswords {
-  color: red;
-}
 
 #header {
   text-align: center;
@@ -226,9 +223,12 @@ tbody tr:hover {
 
 #main-sidebar h2 {
   text-align: center;
-  font-size: 2em;
+  font-size: 2.5em;
   margin-bottom: 35px;
   margin-top: 50px;
+  color: #fff;
+  text-shadow: 0 1px 0 #ccc, 0 2px 0 #c9c9c9, 0 3px 0 #bbb, 0 4px 0 #b9b9b9, 0 5px 0 #aaa, 0 6px 1px rgba(0,0,0,.1), 0 0 5px rgba(0,0,0,.1), 0 1px 3px rgba(0,0,0,.3), 0 3px 5px rgba(0,0,0,.2), 0 5px 10px rgba(0,0,0,.25), 0 10px 10px rgba(0,0,0,.2), 0 20px 20px rgba(0,0,0,.15);
+	
 }
 
 #member-foto {
@@ -238,6 +238,8 @@ tbody tr:hover {
 
 #member-details {
   display: inline-block;
+ position: relative;
+ top: -30px;
 }
 
 #member-details ul {
@@ -257,21 +259,23 @@ tbody tr:hover {
 #sessions {
   margin-top: 55px;
   text-align: center;
+  
 }
 
 .addSessionsButton {
   display: inline-block;
   border: 2px solid black;
   border-radius: 25px;
-  width: 103px;
+  width: 120px;
   padding: 5px;
   text-align: center;
   margin: 15px;
+  background-color: rgba(0,255,255);
+  font-weight: bold;
 }
 
 .addSessionsButton:hover {
   cursor: pointer;
-  background-color: #2f3640;
-  color: white;
+  background-color: orange;
   transition-duration: .2s;
 }
