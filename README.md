@@ -30,7 +30,7 @@ An APP designed to manage Heart Cycling Studio Members subscriptions ☺
 
 ## Live preview
 
-Open [admin.html](https://1lucianmoldovan.github.io/node-fitness-app/public/index.html)
+Open [Live demo](https://1lucianmoldovan.github.io/node-fitness-app/public/index.html)
 
 ## Setup
 
