@@ -42,6 +42,8 @@ button {
   cursor: pointer;
 }
 
+button:hover {color: gray;}
+
 #adminZone button {
   margin-bottom: 25px;
 }

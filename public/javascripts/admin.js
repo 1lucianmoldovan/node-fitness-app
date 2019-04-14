@@ -2,6 +2,7 @@
 var idToEdit = "";
 var monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
+
 const globalVarStuf = {
     firstName_input: $('input[name=firstName]'),
     lastName_input: $('input[name=lastName]'),
@@ -109,6 +110,9 @@ function memberSearch() {
 
 //Open and close Form
 function openNewMemberForm() {
+    let randomPhoneNr = '07' + Math.floor(Math.random() * 100000000);
+    globalVarStuf.phone_input.val(randomPhoneNr); 
+    globalVarStuf.availableSessions_input.val(0);
     globalVarStuf.startDate_input.val(today);
     $('#modal1').fadeIn();
 };
@@ -163,12 +167,7 @@ function saveNewMember() {
         alert("Please provide email");
         globalVarStuf.email_input.focus();
         return false;
-    } else if (availableSessions < 0 || availableSessions == "") {
-        alert("Please provide available sessions");
-        globalVarStuf.availableSessions_input.focus();
-        return false;
-    }
-    else {
+    } else {
         var actionUrl = idToEdit ? API_URL.UPDATE + '?id=' + idToEdit : API_URL.CREATE;
         $.post(actionUrl, {
             firstName, // shortcut from Es6 (key is the same as value variable name)
@@ -261,7 +260,7 @@ function memberEdit() {
 
 function confirmDelete(delUrl) {
     $('.sec-modal').hide();//TO FIX!!!!!!!!!!!
-    if (confirm("Are you sure you want to delete")) {
+    if (confirm("Are you sure you want to delete member")) {
       document.location = delUrl;
     }
   }
