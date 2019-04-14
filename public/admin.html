@@ -9,21 +9,23 @@
 </head>
 
 <body>
+    <div id="header">
+        <div class="search-box">
+            <input class="search-txt" type="text" id="search" placeholder="Search">
+            <i class="fa fa-search" id="search-btn"></i>
+        </div>
+
+        <button class="headerButton" id="presentButton" onclick="presentCheck()">Present</button>
+
+        <button class="headerButton" id="addMemberButton" onclick="openNewMemberForm()">Add member</button>
+    </div>
+
 
     <div class="container">
         <div class="page-wrap">
             <section class="main-content">
 
-                <div id="header">
-                    <div class="search-box">
-                        <input class="search-txt" type="text" id="search" placeholder="Search">
-                        <i class="fa fa-search" id="search-btn"></i>
-                    </div>
-
-                    <button class="headerButton" id="presentButton" onclick="presentCheck()">Present</button>
-
-                    <button class="headerButton" id="addMemberButton" onclick="openNewMemberForm()">Add member</button>
-                </div>
+                
 
 
                 <table id="tabele1">
