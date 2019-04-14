@@ -102,7 +102,9 @@ table {
   border-collapse: collapse;
   width: 100%;
   counter-reset: rowNumber;
+  border-radius: 6px;
 }
+
 
 tbody td:first-of-type, thead th:first-of-type {
   width: 1px;
@@ -124,6 +126,10 @@ tbody tr {
   border-style: solid none;
 }
 
+tbody tr:last-of-type {
+  border: none;
+}
+
 th, td {
   text-align: center;
   padding: 8px 0px;
@@ -131,8 +137,26 @@ th, td {
 
 th {
   cursor: pointer;
-  background-color: #00aeef;
+  background-color: #23286b;
   color: white;
+  height: 25px;
+}
+
+/* top-left border-radius */
+table tr:first-child th:first-child {
+  border-top-left-radius: 10px;
+}
+/* top-right border-radius */
+table tr:first-child th:last-child {
+  border-top-right-radius: 10px;
+}
+/* bottom-left border-radius */
+table tbody tr:last-child td:first-child {
+  border-bottom-left-radius: 10px;
+}
+/* bottom-right border-radius */
+table tr:last-child td:last-child {
+  border-bottom-right-radius: 10px;
 }
 
 .red {
