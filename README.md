@@ -1,6 +1,6 @@
-# Fitness App
+# Fitness App 
 
-An APP designed to manage Fitness Studio Members recording daily activity ☺
+An APP designed to manage Heart Cycling Studio Members subscriptions ☺
 
 ## Structure
 
@@ -8,6 +8,7 @@ An APP designed to manage Fitness Studio Members recording daily activity ☺
 - js to generate member-list table dynamically
 - SQL database to store members
 - static json files to use as database for live preview
+- Gravatar used for profile photo source
 
 ## Content
 
@@ -19,15 +20,17 @@ An APP designed to manage Fitness Studio Members recording daily activity ☺
 
 - Other opperations: 
     - **Search** members
+    - **Present** to log every presence of selected member
     - **Browse** details (personal details + membership status)
+    - **Edit** the number of available sessions
 
 - Operations in **Member details**
-    - **Add** new sessions
-    - **Update** start date for current subscription
+    - **Add 4/8/12** sessions
+    - **Edit** member details (name/password/phone/e-mail/sessions/validity)
 
 ## Live preview
 
-Open [admin.html](https://1lucianmoldovan.github.io/node-fitness-app/public/admin.html)
+Open [admin.html](https://1lucianmoldovan.github.io/node-fitness-app/public/index.html)
 
 ## Setup
 
@@ -54,4 +57,4 @@ Open terminal -> npm install
 npm run devstart
 ```
 
-Open http://localhost:3000/admin.html
+Open http://localhost:3000/
