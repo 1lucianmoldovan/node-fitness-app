@@ -17,7 +17,7 @@ router.post('/create', function (req, res, next) {
     var mail = req.body.email;
     var startDate = "0";
     var endDate = "0";
-    var initialSessions = "0";
+    var availableSessions = "0";
     var usedSessions = "0";
 
 
@@ -30,7 +30,7 @@ router.post('/create', function (req, res, next) {
         lastName,
         startDate,
         endDate,
-        initialSessions,
+        availableSessions,
         usedSessions,
         phone,
         mail

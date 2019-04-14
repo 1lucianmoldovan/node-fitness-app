@@ -5,7 +5,7 @@
     "lastName": "Griffin",
     "startDate": "01.02.2019",
     "endDate": "01.03.2019",
-    "initialSessions": "10",
+    "availableSessions": "10",
     "usedSessions": "7",
     "phone": "0743223342",
     "email": "peter.griffin@gmail.com"
@@ -16,7 +16,7 @@
     "lastName": "Lazar",
     "startDate": "01.02.2019",
     "endDate": "01.03.2019",
-    "initialSessions": "10",
+    "availableSessions": "10",
     "usedSessions": "7",
     "phone": "0743223342",
     "email": "peter.griffin@gmail.com"
@@ -27,7 +27,7 @@
     "lastName": "Frandes",
     "startDate": "0",
     "endDate": "0",
-    "initialSessions": "0",
+    "availableSessions": "0",
     "usedSessions": "0",
     "phone": "743223342"
   },
@@ -37,7 +37,7 @@
     "lastName": "Crisan",
     "startDate": "0",
     "endDate": "0",
-    "initialSessions": "0",
+    "availableSessions": "0",
     "usedSessions": "0",
     "phone": "755962057"
   }
