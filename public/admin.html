@@ -25,20 +25,22 @@
         <div class="page-wrap">
             <section class="main-content">
 
-                
+
+                <div class="overflow">
+                    <table id="tabele1">
+                        <thead>
+                            <th>P</th>
+                            <th>#</th>
+                            <th onclick="sortTable(2)" title="Sort by Last Name">Last Name</th>
+                            <th onclick="sortTable(3)" title="Sort by First Name">First Name</th>
+                            <th onclick="sortTable(4)" title="Sort by Sessions">Available Sessions</th>
+                            <th onclick="sortTable(5)" title="Sort by Date">End Date</th>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
 
 
-                <table id="tabele1">
-                    <thead>
-                        <th>P</th>
-                        <th>#</th>
-                        <th onclick="sortTable(2)" title="Sort by Last Name">Last Name</th>
-                        <th onclick="sortTable(3)" title="Sort by First Name">First Name</th>
-                        <th onclick="sortTable(4)" title="Sort by Sessions">Available Sessions</th>
-                        <th onclick="sortTable(5)" title="Sort by Date">End Date</th>
-                    </thead>
-                    <tbody></tbody>
-                </table>
 
 
 
@@ -46,8 +48,8 @@
             <aside id="main-sidebar">
                 <div class="close" onclick="hideMemberDetails()" title="close">+</div>
                 <h2><span id="lastNameDetails"></span> <span id="firstNameDetails"></span></h2>
-               
-                <img id="image" >
+
+                <img id="image">
                 <div id="member-details">
                     <ul>
 
@@ -109,7 +111,7 @@
                         <label for="sesionSelect">Select Sessions</label>
                         <input class="modalBox" id="availableSessions" name="availableSessions" type="number">
                     </div>
-                    <div class="modalInputs" id="usedSessions" >
+                    <div class="modalInputs" id="usedSessions">
                         <label for="usedSesions">Used Sessions</label>
                         <input class="modalBox" name="usedSessions" type="number">
                     </div>
@@ -119,7 +121,7 @@
                     </div>
                     <div class="modalInputs" id="endDate">
                         <label for="endDate">End date</label>
-                        <input class="modalBox"  name="endDate" type="date">
+                        <input class="modalBox" name="endDate" type="date">
                     </div>
                     <button id="submitBtn">Submit</button>
                 </form>
