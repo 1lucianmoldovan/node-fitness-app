@@ -74,12 +74,13 @@ function displayDate(a) {
 //display members table
 function displayMembers(members) {
     var rows = members.map(function (member) {
-        var endDate = new Date(member.endDate);
-        endDate = setDisplayDate(endDate);
+        var thisEndDate = saveDate(new Date(member.endDate));
+        endDate = setDisplayDate(new Date(member.endDate));
+   
         var rowColor = '';
-        if (member.availableSessions < 1) {
+        if ((member.availableSessions < 1 ) || (thisEndDate < today)) {
             rowColor = "red";
-        } else if (member.availableSessions <= 3) {
+        } else if ((member.availableSessions <= 3) || (thisEndDate == today)) {
             rowColor = "yellow";
         } else {
             rowColor = "green"
@@ -242,7 +243,6 @@ function memberEdit() {
     openNewMemberForm();
     $('#usedSessions').show();
     $('#endDate').show();
-    globalVarStuf.startDate_input.val(member.endDate)
     globalVarStuf.firstName_input.val(member.firstName);
     globalVarStuf.lastName_input.val(member.lastName);
     globalVarStuf.password_input.val(member.password);
