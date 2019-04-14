@@ -114,7 +114,6 @@ function openNewMemberForm() {
 function closeNewMemberForm() {
     $('#modal1').fadeOut();
     document.getElementById("adMembersForm").reset();
-    document.getElementById('comparePasswords').innerHTML = "";
     $('#usedSessions').hide();
     $('#endDate').hide();
 };
@@ -185,7 +184,6 @@ function saveNewMember() {
             idToEdit = "";
             if (response.success) {
                 loadMembers();
-                //TODO close form fadeOut?
             }
         })
     }
@@ -261,6 +259,14 @@ function memberEdit() {
     globalVarStuf.usedSessions_input.val(member.usedSessions);
 }
 
+function confirmDelete(delUrl) {
+    closeNewMemberForm();
+    if (confirm("Are you sure you want to delete")) {
+      document.location = delUrl;
+    }
+  }
+
+
 //show member details in main side-bar
 function showMemberDetails() {
     const id = this.getAttribute('data-id');
@@ -275,7 +281,7 @@ function showMemberDetails() {
                         <div class="addSessionsButton" name="8" data-id="${member.id}">Add 8 sessions</div>
                         <div class="addSessionsButton" name="12" data-id="${member.id}">Add 12 sessions</div>`
 
-    var editDel = `<a href="${API_URL.DELETE}?id=${member.id}" title="Delete member" class="edit" ><i class="fa fa-trash"></i></a> | 
+    var editDel = `<a href=javascript:confirmDelete("${API_URL.DELETE}?id=${member.id}")  title="Delete member" class="edit" ><i class="fa fa-trash"></i></a> | 
                     <a href="#" title="Edit member" class="edit" data-id="${member.id}">&#9998;</a>`
 
     sessionDetails_div.innerHTML = addSessions;
@@ -301,6 +307,9 @@ function showMemberDetails() {
     var email = member.email;
     var gravatar_image_url = get_gravatar_image_url(email, 175);
     $('#image').attr('src', gravatar_image_url);
+
+
+    
     $('#main-sidebar').show("slow");
 }
 
