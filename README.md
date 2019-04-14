@@ -2,6 +2,10 @@
 
 An APP designed to manage Heart Cycling Studio Member subscriptions ☺
 
+## Live preview
+
+Open [Live demo](https://1lucianmoldovan.github.io/node-fitness-app/public/index.html)
+
 ## Structure
 
 - html/css for main layout
@@ -27,10 +31,6 @@ An APP designed to manage Heart Cycling Studio Member subscriptions ☺
 - Operations in **Member details**
     - **Add 4/8/12** sessions
     - **Edit** member details (name/password/phone/e-mail/sessions/subscription validity)
-
-## Live preview
-
-Open [Live demo](https://1lucianmoldovan.github.io/node-fitness-app/public/index.html)
 
 ## Setup
 
