@@ -12,6 +12,7 @@ const globalVarStuf = {
     availableSessions_input: $('input[name=availableSessions]'),
     usedSessions_input: $('input[name=usedSessions]'),
     startDate_input: $('input[name=startDate]'),
+    endDate_input: $('input[name=endDate]'),
     delEdit_div: document.querySelector('#delEdit'),
     lastNameDetails_span: document.getElementById('lastNameDetails'),
     firstNameDetails_span: document.getElementById('firstNameDetails'),
@@ -20,7 +21,9 @@ const globalVarStuf = {
     endDateDetails_span: document.getElementById('endDateDetails'),
     usedSessionsDetail: document.getElementById('usedSessionsDetails')
 }
-
+//get current date for start date input default value
+var today = new Date();
+today = today.getFullYear() + '-' + ('0' + (today.getMonth() + 1)).slice(-2) + '-' + ('0' + today.getDate()).slice(-2);
 
 var API_URL = {
     CREATE: "members/create",
@@ -40,9 +43,7 @@ function loadMembers() {
     })
 }
 
-//get current date for start date input default value
-var today = new Date();
-today = today.getFullYear() + '-' + ('0' + (today.getMonth() + 1)).slice(-2) + '-' + ('0' + today.getDate()).slice(-2);
+
 
 //set save date in db
 function saveDate(date) {
@@ -109,12 +110,14 @@ function memberSearch() {
 function openNewMemberForm() {
     globalVarStuf.startDate_input.val(today);
     $('#modal1').fadeIn();
-}
+};
 function closeNewMemberForm() {
     $('#modal1').fadeOut();
     document.getElementById("adMembersForm").reset();
     document.getElementById('comparePasswords').innerHTML = "";
-}
+    $('#usedSessions').hide();
+    $('#endDate').hide();
+};
 
 //save member in db
 function saveNewMember() {
@@ -239,6 +242,9 @@ function memberEdit() {
         return member.id == idToEdit;
     });
     openNewMemberForm();
+    $('#usedSessions').show();
+    $('#endDate').show();
+    globalVarStuf.startDate_input.val(member.endDate)
     globalVarStuf.firstName_input.val(member.firstName);
     globalVarStuf.lastName_input.val(member.lastName);
     globalVarStuf.password_input.val(member.password);
@@ -248,7 +254,10 @@ function memberEdit() {
     globalVarStuf.availableSessions_input.val(member.availableSessions);
     var startDate = new Date(member.startDate);
     startDate = saveDate(startDate);
+    let endDate = new Date(member.endDate);
+    endDate = saveDate(endDate);
     globalVarStuf.startDate_input.val(startDate);
+    globalVarStuf.endDate_input.val(endDate);
     globalVarStuf.usedSessions_input.val(member.usedSessions);
 }
 
@@ -450,6 +459,8 @@ function initEvents() {
     });
 };
 
+$('#usedSessions').hide();
+$('#endDate').hide();
 $('.sec-modal').hide();
 $('#main-sidebar').hide();
 initEvents();

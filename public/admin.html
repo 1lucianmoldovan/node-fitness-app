@@ -2,7 +2,7 @@
 <html>
 
 <head>
-        <link rel="icon" href="../images/logo.jpeg">
+    <link rel="icon" href="../images/logo.jpeg">
     <title>Fitness App</title>
     <link rel='stylesheet' href='stylesheets/style.css' />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -45,7 +45,7 @@
                 <div class="close" onclick="hideMemberDetails()" title="close">+</div>
                 <h2><span id="lastNameDetails"></span> <span id="firstNameDetails"></span></h2>
                 <div id="member-foto">
-                    <img id="image"/>
+                    <img id="image" />
                 </div>
                 <div id="member-details">
                     <ul>
@@ -108,13 +108,17 @@
                         <label for="sesionSelect">Select Sessions</label>
                         <input class="modalBox" id="availableSessions" name="availableSessions" type="number">
                     </div>
-                    <div class="modalInputs" style="display:none" >
+                    <div class="modalInputs" id="usedSessions" >
                         <label for="usedSesions">Used Sessions</label>
-                        <input class="modalBox" id="usedSessions" name="usedSessions" type="number">
+                        <input class="modalBox" name="usedSessions" type="number">
                     </div>
                     <div class="modalInputs">
                         <label for="startDate">Start date</label>
                         <input class="modalBox" id="startDate" name="startDate" type="date">
+                    </div>
+                    <div class="modalInputs" id="endDate">
+                        <label for="endDate">End date</label>
+                        <input class="modalBox"  name="endDate" type="date">
                     </div>
                     <button id="submitBtn">Submit</button>
                 </form>
