@@ -210,9 +210,9 @@ tbody tr:hover {
 
 #main-sidebar {
   position: relative;
-  width: 500px;
-  height: 500px;
-  padding: 15px;
+  width: 550px;
+  height: 550px;
+  padding: 15px 0px;
   border-radius: 10px;
   background-image:linear-gradient(to bottom, rgba(0,255,255,0.92) 0%,rgba(127, 255, 0, 0.92) 100%),url(../images/logo.jpeg);
   margin: 5px;
@@ -231,15 +231,18 @@ tbody tr:hover {
 	
 }
 
-#member-foto {
-  display: inline-block;
-  margin: 30px 0 0 30px;
+#image {
+  width: 175px;
+  height: 175px;
+  margin-left: 20px;
+  margin-top: 20px;
 }
 
 #member-details {
   display: inline-block;
  position: relative;
  top: -30px;
+ left: -40px;
 }
 
 #member-details ul {
@@ -257,7 +260,7 @@ tbody tr:hover {
 }
 
 #sessions {
-  margin-top: 55px;
+  margin-top: 95px;
   text-align: center;
   
 }
