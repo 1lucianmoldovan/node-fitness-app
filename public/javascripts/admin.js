@@ -260,7 +260,7 @@ function memberEdit() {
 }
 
 function confirmDelete(delUrl) {
-    closeNewMemberForm();
+    $('.sec-modal').hide();//TO FIX!!!!!!!!!!!
     if (confirm("Are you sure you want to delete")) {
       document.location = delUrl;
     }
