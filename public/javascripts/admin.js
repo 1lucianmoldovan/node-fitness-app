@@ -120,8 +120,6 @@ function openNewMemberForm() {
 function closeNewMemberForm() {
     $('#modal1').fadeOut();
     document.getElementById("adMembersForm").reset();
-    $('#usedSessions').hide();
-    $('#endDate').hide();
 };
 
 //save member in db
@@ -242,7 +240,7 @@ function memberEdit() {
     });
     openNewMemberForm();
     $('#usedSessions').show();
-    $('#endDate').show();
+    // $('#endDate').show();
     globalVarStuf.firstName_input.val(member.firstName);
     globalVarStuf.lastName_input.val(member.lastName);
     globalVarStuf.password_input.val(member.password);
