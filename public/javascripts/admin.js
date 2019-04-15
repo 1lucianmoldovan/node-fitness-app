@@ -240,7 +240,7 @@ function memberEdit() {
     });
     openNewMemberForm();
     $('#usedSessions').show();
-    // $('#endDate').show();
+    $('#endDate').show();
     globalVarStuf.firstName_input.val(member.firstName);
     globalVarStuf.lastName_input.val(member.lastName);
     globalVarStuf.password_input.val(member.password);
@@ -258,10 +258,9 @@ function memberEdit() {
 }
 
 function confirmDelete(delUrl) {
-    $('.sec-modal').hide();//TO FIX!!!!!!!!!!!
     if (confirm("Are you sure you want to delete member")) {
       document.location = delUrl;
-    }
+    }else{loadMembers()}
   }
 
 
@@ -279,7 +278,7 @@ function showMemberDetails() {
                         <div class="addSessionsButton" name="8" data-id="${member.id}">Add 8 sessions</div>
                         <div class="addSessionsButton" name="12" data-id="${member.id}">Add 12 sessions</div>`
 
-    var editDel = `<a href=javascript:confirmDelete("${API_URL.DELETE}?id=${member.id}")  title="Delete member" class="edit" ><i class="fa fa-trash"></i></a> | 
+    var editDel = `<a href=javascript:confirmDelete("${API_URL.DELETE}?id=${member.id}")  title="Delete member" class="delete" ><i class="fa fa-trash"></i></a> | 
                     <a href="#" title="Edit member" class="edit" data-id="${member.id}">&#9998;</a>`
 
     sessionDetails_div.innerHTML = addSessions;
@@ -352,6 +351,7 @@ const presentCheck = () => {
                 usedSessions--;
                 alert(`User ${member.lastName} ${member.firstName} has no sessions left, no changes ware made.`);
                 console.warn(`User id ${member.id}, ${member.lastName} ${member.firstName} has no sessions left, no changes ware made.`);
+                loadMembers();
             } else {
                 $.post(actionUrl, {
                     firstName, // shortcut from Es6 (key is the same as value variable name)

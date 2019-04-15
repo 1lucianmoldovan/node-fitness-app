@@ -334,6 +334,11 @@ tbody tr:hover {
   color: #040733;
 }
 
+.delete {
+  font-size: 1.5em;
+  color: #040733;
+}
+
 #sessions {
   margin-top: 60px;
   text-align: center;

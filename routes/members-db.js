@@ -1,5 +1,5 @@
 var express = require('express');
-var mysql = require('mysql')
+var mysql = require('mysql');
 var router = express.Router();
 
 const pool = mysql.createPool({
@@ -15,6 +15,7 @@ router.get('/', function (req, res, next) {
         if (err) throw err;
         const sql = "SELECT * FROM members";
         connection.query(sql, function (err, results) {
+            connection.release();
             if (err) throw err;
             res.json(results);
         })
@@ -41,6 +42,7 @@ router.post('/create', function (req, res, next) {
   
       const sql = `INSERT INTO members (id, username, firstName, lastName, password, confPassword, phone, email, availableSessions, usedSessions, startDate, endDate) VALUES (NULL, '${username}', '${firstName}', '${lastName}', '${password}', '${confPassword}', '${phone}', '${email}', '${availableSessions}', '${usedSessions}', '${startDate}', '${endDate}')`;
       connection.query(sql, function (err, results) {
+        connection.release();
         if (err) throw err;
         res.json({ success: true });
       })
@@ -66,6 +68,7 @@ router.post('/update', function(req, res, next) {
       if(err) throw err;
       const sql = `UPDATE members SET username='${username}', firstName='${firstName}', lastName='${lastName}', password='${password}', confPassword='${confPassword}', phone='${phone}', email='${email}', availableSessions='${availableSessions}', usedSessions ='${usedSessions}', startDate='${startDate}', endDate='${endDate}' WHERE id=${id}`;
       connection.query(sql, function(err, results) {
+        connection.release();
         if(err) throw err;
         res.json({success: true});
       })
@@ -80,6 +83,7 @@ router.get('/delete', function (req, res, next) {
         if (err) throw err;
         const sql = `DELETE FROM members WHERE id=${id}`;
         connection.query(sql, function (err, results) {
+            connection.release();
             if (err) throw err;
             res.redirect('/admin.html');
         })
