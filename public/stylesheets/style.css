@@ -46,6 +46,8 @@ button:hover {
   color: gray;
 }
 
+button:focus {outline:0;}
+
 #adminZone button {
   margin-bottom: 25px;
 }
@@ -159,28 +161,24 @@ th {
 }
 
 /* top-left border-radius */
-
 table tr:first-child th:first-child {
   border-top-left-radius: 10px;
 }
 
 /* top-right border-radius */
-
-table tr:first-child th:last-child {
+/* table tr:first-child th:last-child {
   border-top-right-radius: 10px;
-}
+} */
 
 /* bottom-left border-radius */
-
 table tbody tr:last-child td:first-child {
   border-bottom-left-radius: 10px;
 }
 
 /* bottom-right border-radius */
-
-table tr:last-child td:last-child {
+/* table tr:last-child td:last-child {
   border-bottom-right-radius: 10px;
-}
+} */
 
 .red {
   background-image: linear-gradient(to top, #ffad99 0%, #ffebe6 100%);
