@@ -110,8 +110,8 @@ function memberSearch() {
 
 //Open and close Form
 function openNewMemberForm() {
-    let randomPhoneNr = '07' + Math.floor(Math.random() * 100000000);
-    globalVarStuf.phone_input.val(randomPhoneNr); 
+    // let randomPhoneNr = '07' + Math.floor(Math.random() * 100000000);
+    // globalVarStuf.phone_input.val(randomPhoneNr); 
     globalVarStuf.availableSessions_input.val(0);
     globalVarStuf.usedSessions_input.val(0);
     globalVarStuf.startDate_input.val(today);

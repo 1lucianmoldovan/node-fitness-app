@@ -264,8 +264,8 @@ tbody tr:hover {
 }
 
 .close:hover {
-  transform: rotate(135deg);
-  transition-duration: .3s;
+  transform: rotate(45deg) scale(1.4);
+  transition-duration: .2s;
 }
 
 .edit {
